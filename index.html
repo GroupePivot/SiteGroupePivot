@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Groupe Pivot — Force de vente sur mesure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;900&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#F5F4F0;font-family:'Archivo',sans-serif;color:#17181C}
+a{color:#3E6E91;text-decoration:none}
+a:hover{color:#17181C}
+.pv-in{width:100%;box-sizing:border-box;background:rgba(245,244,240,0.05);border:1px solid #7C7D83;border-radius:0;color:#F5F4F0;font-family:'Archivo',sans-serif;font-size:16px;padding:16px 18px;transition:border-color 0.2s ease}
+.pv-in::placeholder{color:#8F9096}
+.pv-in:hover{border-color:#B8B9BE}
+.pv-in:focus{outline:2px solid #3E6E91;outline-offset:2px;border-color:#F5F4F0}
+.pv-in[aria-invalid="true"]{border-color:#F0A56B}
+.pv-go:focus-visible{outline:2px solid #F5F4F0;outline-offset:3px}
+</style>
+</helmet>
+<div style="background:#F5F4F0">
+  <nav style="position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(245,244,240,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #B8B9BE">
+    <div style="font-weight:900;font-size:20px;letter-spacing:0.02em">GROUPE PIVOT<span style="color:#3E6E91">.</span></div>
+    <div style="display:flex;gap:32px;align-items:center">
+      <a href="#methode" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">MÉTHODE</a>
+      <a href="#forfaits" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">SERVICES</a>
+      <a href="#contact" style="font-size:13px;font-weight:600;letter-spacing:0.12em;color:#F5F4F0;background:#17181C;padding:12px 24px" style-hover="background:#3E6E91;color:#F5F4F0">PARLONS-EN</a>
+    </div>
+  </nav>
+
+  <div data-screen-label="Héros scrollytelling" ref="{{ outerRef }}" style="height:480vh;background:#17181C;position:relative">
+    <div ref="{{ stickRef }}" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center">
+      <div ref="{{ sceneRef }}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="{{ vb }}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:92%;display:block">
+          <rect data-anim="dotGlow" x="-46" y="-46" width="92" height="92" fill="#3E6E91" opacity="0" style="filter:blur(14px)"></rect>
+          <sc-for list="{{ chaosPaths }}" as="cp" hint-placeholder-count="6">
+            <path data-anim="chaos" d="{{ cp.d }}" fill="none" stroke="#55565C" stroke-width="{{ cp.w }}" stroke-linecap="round" style="filter:drop-shadow(0 0 4px rgba(184,185,190,0.45))"></path>
+          </sc-for>
+          <path data-anim="l1" d="{{ l1 }}" fill="none" stroke="#F5F4F0" stroke-width="2.5" stroke-linecap="round" style="filter:drop-shadow(0 0 5px rgba(245,244,240,0.5)) drop-shadow(0 0 16px rgba(245,244,240,0.25))"></path>
+          <path data-anim="l2" d="{{ l2 }}" fill="none" stroke="#F5F4F0" stroke-width="2.5" stroke-linecap="round" style="filter:drop-shadow(0 0 5px rgba(245,244,240,0.5)) drop-shadow(0 0 16px rgba(245,244,240,0.25))"></path>
+          <sc-for list="{{ splitPaths }}" as="sp" hint-placeholder-count="5">
+            <path data-anim="split" d="{{ sp }}" fill="none" stroke="#4E86AE" stroke-width="2" stroke-linecap="round" style="filter:drop-shadow(0 0 5px rgba(94,150,190,0.85)) drop-shadow(0 0 14px rgba(62,110,145,0.5))"></path>
+          </sc-for>
+          <path data-anim="r1" d="{{ r1 }}" fill="none" stroke="#4E86AE" stroke-width="2.5" stroke-linecap="round" style="filter:drop-shadow(0 0 5px rgba(94,150,190,0.85)) drop-shadow(0 0 14px rgba(62,110,145,0.5))"></path>
+          <path data-anim="r2" d="{{ r2 }}" fill="none" stroke="#4E86AE" stroke-width="2.5" stroke-linecap="round" style="filter:drop-shadow(0 0 5px rgba(94,150,190,0.85)) drop-shadow(0 0 14px rgba(62,110,145,0.5))"></path>
+          <sc-for list="{{ housePaths }}" as="hp" hint-placeholder-count="5">
+            <path data-anim="house" d="{{ hp }}" fill="none" stroke="#55565C" stroke-width="2" stroke-linejoin="round" opacity="0"></path>
+          </sc-for>
+          <g data-anim="nodeClient" opacity="0">
+            <path d="{{ client.craneDetail }}" fill="none" stroke="#6E6F75" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="{{ client.crane }}" fill="none" stroke="#B8B9BE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="{{ client.weight }}" fill="#B8B9BE"></path>
+            <path d="{{ client.cab }}" fill="#17181C" stroke="#B8B9BE" stroke-width="1.5" stroke-linejoin="round"></path>
+            <path d="{{ client.house }}" fill="#17181C" stroke="#F5F4F0" stroke-width="2.5" stroke-linejoin="round"></path>
+            <path d="{{ client.windows }}" fill="#B8B9BE" opacity="0.9"></path>
+            <path d="{{ client.door }}" fill="none" stroke="#F5F4F0" stroke-width="1.5" stroke-linejoin="round"></path>
+            <text x="{{ client.lx }}" y="{{ client.ly }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#B8B9BE">VOTRE ENTREPRISE</text>
+          </g>
+          <g data-anim="nodeGP" opacity="0" style="filter:drop-shadow(0 0 14px rgba(245,244,240,0.18))">
+            <text data-anim="gpP" x="{{ gp.px }}" y="{{ gp.ty }}" font-family="Archivo" font-size="46" font-weight="900" fill="#3E6E91">P</text>
+            <text data-anim="gpG" x="{{ gp.gx }}" y="{{ gp.ty }}" font-family="Archivo" font-size="46" font-weight="900" fill="#F5F4F0" stroke="#17181C" stroke-width="3.4" paint-order="stroke">G</text>
+            <rect data-anim="gpDot" x="{{ gp.dx }}" y="{{ gp.dy }}" width="9" height="9" fill="#3E6E91"></rect>
+            <text x="{{ gp.x }}" y="{{ gp.ly }}" text-anchor="middle" font-family="Archivo" font-size="15" font-weight="900" fill="#F5F4F0">GROUPE PIVOT<tspan fill="#3E6E91">.</tspan></text>
+          </g>
+          <text data-anim="labEnd" x="{{ client.lx }}" y="{{ client.ey }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#3E6E91" opacity="0">RÉSULTATS LIVRÉS</text>
+          <g data-anim="dot" opacity="0">
+            <rect x="-7" y="-7" width="14" height="14" fill="#3E6E91" style="filter:drop-shadow(0 0 6px rgba(94,150,190,0.95)) drop-shadow(0 0 18px rgba(62,110,145,0.6))"></rect>
+          </g>
+        </svg>
+      </div>
+      <div ref="{{ headRef }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;background:rgba(23,24,28,0.55)">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px">
+          <div style="width:48px;height:1px;background:#B8B9BE"></div>
+          <div style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">FORCE DE VENTE SUR MESURE</div>
+          <div style="width:48px;height:1px;background:#B8B9BE"></div>
+        </div>
+        <h1 style="margin:0;color:#F5F4F0;font-weight:900;font-size:clamp(44px,7vw,96px);line-height:0.98;text-transform:uppercase">Vous bâtissez.<br>On s'occupe du reste<span style="color:#3E6E91">.</span></h1>
+        <div style="margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="font-size:12px;font-weight:500;letter-spacing:0.24em;color:#B8B9BE">DÉFILEZ</div>
+          <div style="width:1px;height:44px;background:#3E6E91"></div>
+        </div>
+      </div>
+      <div ref="{{ capRef }}" style="position:absolute;left:48px;bottom:44px;width:min(640px,80vw);opacity:0;transition:opacity 0.4s ease">
+        <sc-for list="{{ captions }}" as="c" hint-placeholder-count="5">
+          <div style="position:absolute;bottom:0;left:0;width:100%;opacity:{{ c.op }};transform:translateY({{ c.dy }}px);transition:opacity 0.45s ease,transform 0.45s ease;pointer-events:none">
+            <div style="font-size:17px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">{{ c.num }}</div>
+            <div style="font-weight:900;font-size:clamp(32px,4vw,52px);line-height:1.05;color:#F5F4F0;text-transform:uppercase;margin-bottom:14px">{{ c.t }}</div>
+            <div style="font-size:clamp(18px,2.2vw,28px);line-height:1.5;color:#B8B9BE">{{ c.d }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div ref="{{ spineWrapRef }}" style="position:relative">
+  <svg ref="{{ spineSvgRef }}" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;overflow:visible">
+    <path ref="{{ spinePathRef }}" fill="none" stroke="#3E6E91" stroke-width="2" stroke-linecap="round" opacity="0" style="filter:drop-shadow(0 0 5px rgba(94,150,190,0.7))"></path>
+    <rect ref="{{ spineDotRef }}" x="-7" y="-7" width="14" height="14" fill="#3E6E91" opacity="0" style="filter:drop-shadow(0 0 6px rgba(94,150,190,0.95)) drop-shadow(0 0 18px rgba(62,110,145,0.6))"></rect>
+  </svg>
+  <section data-screen-label="Le problème" style="padding:110px 48px;max-width:1100px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:64px;align-items:start">
+      <div data-reveal>
+        <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">01 — LE PROBLÈME</div>
+        <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Vendre gruge le temps de bâtir</h2>
+      </div>
+      <div style="display:grid;gap:28px;font-size:17px;line-height:1.7;color:#55565C">
+        <p data-reveal style="margin:0">Chaque lead demande des heures : rappeler, qualifier, se déplacer, mesurer, monter la soumission. Et tout ça, souvent pour des clients non sérieux.</p>
+        <p data-reveal style="margin:0">Pendant ce temps, vos chantiers et votre gestion ne se font pas tout seuls.</p>
+        <p data-reveal style="margin:0">Embaucher un vendeur? Comptez le salaire, la formation, le roulement — et aucune garantie de résultat. La plupart des entrepreneurs finissent par faire les deux jobs à moitié.</p>
+        <p data-reveal style="margin:0;color:#17181C;font-weight:600">Il existe une troisième option : une force de vente complète, déjà formée, payée pour performer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="methode" data-screen-label="Méthode" style="background:#17181C;color:#F5F4F0;padding:110px 48px">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:64px">
+        <div data-reveal>
+          <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">02 — LA MÉTHODE</div>
+          <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Du premier appel à la signature</h2>
+        </div>
+        <div data-reveal style="font-size:15px;color:#B8B9BE;max-width:320px;line-height:1.6">Chaque lead pivote entre nos mains — vous recevez un dossier prêt à soumissionner, ou un contrat signé.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
+        <sc-for list="{{ etapes }}" as="e" hint-placeholder-count="4">
+          <div data-reveal style="background:#17181C;border:1px solid #55565C;padding:36px 28px;display:grid;gap:16px;transition:transform 0.35s ease,border-color 0.35s ease,background 0.35s ease" style-hover="background:#1E2026;transform:translateY(-6px);border:1px solid #3E6E91">
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="font-weight:900;font-size:26px;color:#3E6E91;display:inline-block;transform:rotate({{ e.rot }}deg)">G</span>
+              <span style="font-size:12px;font-weight:500;letter-spacing:0.18em;color:#B8B9BE">{{ e.num }}</span>
+            </div>
+            <div style="font-weight:600;font-size:19px">{{ e.titre }}</div>
+            <div style="font-size:14.5px;line-height:1.65;color:#B8B9BE">{{ e.texte }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:48px;flex-wrap:wrap;margin-top:72px">
+        <sc-for list="{{ chiffres }}" as="c" hint-placeholder-count="3">
+          <div data-reveal style="display:grid;gap:6px">
+            <div style="font-weight:900;font-size:clamp(36px,4vw,52px);line-height:1">{{ c.valeur }}<span style="color:#3E6E91">.</span></div>
+            <div style="font-size:13px;letter-spacing:0.14em;color:#B8B9BE;font-weight:500">{{ c.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="forfaits" data-screen-label="Forfaits" style="padding:110px 48px;max-width:1100px;margin:0 auto">
+    <div data-reveal style="text-align:center;margin-bottom:24px">
+      <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">03 — LES SERVICES</div>
+      <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Un accompagnement à votre mesure</h2>
+    </div>
+    <p data-reveal style="text-align:center;font-size:17px;line-height:1.65;color:#55565C;max-width:620px;margin:0 auto 64px">Trois niveaux d'accompagnement, chacun personnalisable à vos besoins, votre territoire et votre volume de leads.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
+      <sc-for list="{{ forfaits }}" as="f" hint-placeholder-count="3">
+        <div data-reveal style="background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.border }};padding:40px 32px;display:flex;flex-direction:column;gap:24px;transition:transform 0.35s ease,box-shadow 0.35s ease" style-hover="transform:translateY(-6px);box-shadow:0 18px 40px rgba(23,24,28,0.14)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:13px;font-weight:600;letter-spacing:0.2em">{{ f.nom }}</div>
+            <sc-if value="{{ f.badge }}" hint-placeholder-val="{{ false }}"><div style="font-size:11px;font-weight:600;letter-spacing:0.14em;background:#3E6E91;color:#F5F4F0;padding:5px 10px">{{ f.badge }}</div></sc-if>
+          </div>
+<div style="font-size:17px;line-height:1.6;color:{{ f.fg }};font-weight:600;min-height:76px">{{ f.pitch }}</div>
+          <div style="height:1px;background:{{ f.border }}"></div>
+          <div style="display:grid;gap:12px;flex:1">
+            <sc-for list="{{ f.items }}" as="it" hint-placeholder-count="4">
+              <div style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;line-height:1.5">
+                <span style="width:8px;height:8px;background:#3E6E91;flex-shrink:0;display:inline-block;transform:translateY(-1px)"></span>
+                <span>{{ it }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div data-reveal style="display:flex;flex-direction:column;align-items:center;gap:24px;margin-top:56px">
+      <p style="margin:0;text-align:center;font-size:15px;color:#55565C">À partir de 2 500 $/mois, selon vos besoins. Préavis de 31 jours, sans engagement à long terme.</p>
+      <a href="#contact" style="display:inline-block;background:#17181C;color:#F5F4F0;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="background:#3E6E91;color:#F5F4F0">DISCUTONS DE VOS BESOINS</a>
+    </div>
+  </section>
+
+  <section id="contact" data-screen-label="Contact" style="background:#17181C;color:#F5F4F0;padding:130px 48px;position:relative;overflow:hidden">
+    <div style="position:absolute;left:-6%;bottom:-22%;font-weight:900;font-size:520px;line-height:1;color:#F5F4F0;opacity:0.04;user-select:none;pointer-events:none;transform:rotate(90deg)">G</div>
+    <div style="position:relative;max-width:760px;margin:0 auto;text-align:center;display:grid;gap:32px;justify-items:center">
+      <div data-reveal data-spine-marker style="display:flex;align-items:center;gap:16px">
+        <div style="width:48px;height:1px;background:#55565C"></div>
+        <div style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">15 MINUTES. AUCUN ENGAGEMENT.</div>
+        <div style="width:48px;height:1px;background:#55565C"></div>
+      </div>
+      <h2 data-reveal style="margin:0;font-weight:900;font-size:clamp(36px,5vw,64px);line-height:1;text-transform:uppercase">Votre carnet de commandes mérite mieux<span style="color:#3E6E91">.</span></h2>
+      <p data-reveal style="margin:0;font-size:17px;line-height:1.65;color:#B8B9BE;max-width:520px">Une rencontre de 15 minutes suffit pour voir si Groupe Pivot peut vous être utile. On compare, ça ne vous engage à rien.</p>
+      <div data-reveal style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
+        <a href="{{ telHref }}" style="display:inline-block;background:#F5F4F0;color:#17181C;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="background:#3E6E91;color:#F5F4F0">{{ telephone }}</a>
+        <a href="{{ mailHref }}" style="display:inline-block;border:1px solid #55565C;color:#F5F4F0;font-weight:500;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="border:1px solid #F5F4F0;color:#F5F4F0">{{ courriel }}</a>
+      </div>
+      <div data-reveal style="width:100%;max-width:520px;display:grid;gap:28px;justify-items:center">
+        <div style="display:flex;align-items:center;gap:16px;width:100%">
+          <div style="flex:1;height:1px;background:#55565C"></div>
+          <div style="font-size:12px;font-weight:500;letter-spacing:0.2em;color:#B8B9BE">OU LAISSEZ-NOUS VOS COORDONNÉES</div>
+          <div style="flex:1;height:1px;background:#55565C"></div>
+        </div>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" novalidate style="width:100%;display:grid;gap:16px;text-align:left">
+            <div style="display:grid;gap:8px">
+              <label for="pv-nom" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">NOM <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">(optionnel)</span></label>
+              <input id="pv-nom" class="pv-in" type="text" name="nom" autocomplete="name" placeholder="Votre nom" value="{{ nom }}" onChange="{{ onNom }}">
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
+              <div style="display:grid;gap:8px;align-content:start;min-width:0">
+                <label for="pv-tel" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">TÉLÉPHONE</label>
+                <input id="pv-tel" class="pv-in" type="tel" name="telephone" autocomplete="tel" placeholder="450 555 0123" value="{{ tel }}" aria-invalid="{{ badTel }}" onChange="{{ onTel }}">
+              </div>
+              <div style="display:grid;gap:8px;align-content:start;min-width:0">
+                <label for="pv-mail" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">COURRIEL</label>
+                <input id="pv-mail" class="pv-in" type="email" name="courriel" autocomplete="email" placeholder="vous@entreprise.ca" value="{{ mail }}" aria-invalid="{{ badMail }}" onChange="{{ onMail }}">
+              </div>
+            </div>
+            <div style="display:grid;gap:8px">
+              <label for="pv-msg" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">MESSAGE <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">(optionnel)</span></label>
+              <textarea id="pv-msg" class="pv-in" name="message" rows="3" placeholder="Un mot sur votre entreprise ou votre besoin" style="resize:vertical;min-height:84px;line-height:1.5" value="{{ msg }}" onChange="{{ onMsg }}"></textarea>
+            </div>
+            <sc-if value="{{ err }}" hint-placeholder-val="{{ false }}">
+              <div role="alert" style="font-size:14px;font-weight:600;line-height:1.5;color:#F0A56B">{{ err }}</div>
+            </sc-if>
+            <button type="submit" class="pv-go" style="border:0;cursor:pointer;font-family:'Archivo',sans-serif;background:#3E6E91;color:#F5F4F0;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px;width:100%" style-hover="background:#F5F4F0;color:#17181C">{{ sendLabel }}</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="width:100%;box-sizing:border-box;border:1px solid #3E6E91;padding:28px 24px;display:grid;gap:8px;text-align:left">
+            <div style="font-weight:900;font-size:20px;text-transform:uppercase">Merci<span style="color:#3E6E91">.</span></div>
+            <div style="font-size:15px;line-height:1.6;color:#B8B9BE">Vos informations ont bien été reçues, nous vous contactons dès que possible.</div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#17181C;color:#55565C;border-top:1px solid #2A2B31;padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+    <div style="font-weight:900;font-size:15px;color:#B8B9BE">G<span style="color:#3E6E91">P</span>.</div>
+    <div style="font-size:12px;letter-spacing:0.14em">GROUPE PIVOT — FORCE DE VENTE SUR MESURE</div>
+    <div style="font-size:12px;letter-spacing:0.1em">© 2026 GROUPE PIVOT</div>
+  </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;telephone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;450 300 9820&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;},&quot;courriel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;info@groupepivot.ca&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;}}">
+class Component extends DCLogic {
+  state = { stage: 0, mobile: false, nom: '', tel: '', mail: '', msg: '', err: '', badTel: false, badMail: false, sent: false, sending: false };
+
+  submitForm(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (this.state.sending) return;
+    // Coller ici l'adresse du webhook GoHighLevel (déclencheur « Inbound Webhook »).
+    const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/hr1JlDQc80VnWBcQ7mOK/webhook-trigger/bce08a28-99d2-4cd0-9c2a-d6f1612b3573';
+    const nom = this.state.nom.trim(), tel = this.state.tel.trim(), mail = this.state.mail.trim();
+    const digits = tel.replace(/\D/g, '');
+    const telOk = digits.length === 10 || (digits.length === 11 && digits[0] === '1');
+    const mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail);
+    let err = '', badTel = false, badMail = false;
+    if (!tel && !mail) {
+      err = 'Indiquez un numéro de téléphone ou un courriel.'; badTel = true; badMail = true;
+    } else {
+      if (tel && !telOk) { badTel = true; err = 'Vérifiez le numéro de téléphone (10 chiffres).'; }
+      if (mail && !mailOk) { badMail = true; err = err ? 'Vérifiez le téléphone et le courriel.' : 'Vérifiez l’adresse courriel.'; }
+    }
+    if (err) { this.setState({ err, badTel, badMail }); return; }
+    if (!WEBHOOK) { this.setState({ sent: true, err: '', badTel: false, badMail: false }); return; }
+    const body = new URLSearchParams({ name: nom, phone: tel, email: mail, message: this.state.msg.trim(), source: 'Site Groupe Pivot' });
+    this.setState({ sending: true, err: '', badTel: false, badMail: false });
+    fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body })
+      .then(() => this.setState({ sent: true, sending: false }))
+      .catch(() => this.setState({ sending: false, err: 'L’envoi n’a pas fonctionné. Réessayez ou appelez-nous.' }));
+  }
+  outerRef = React.createRef();
+  sceneRef = React.createRef();
+  headRef = React.createRef();
+  capRef = React.createRef();
+  stickRef = React.createRef();
+  spineWrapRef = React.createRef();
+  spineSvgRef = React.createRef();
+  spinePathRef = React.createRef();
+  spineDotRef = React.createRef();
+
+  scenes() {
+    return {
+      h: {
+        vb: '0 0 1200 640',
+        chaos: [
+          { d: 'M -30,60 C 140,120 40,240 200,305', w: 2 },
+          { d: 'M -30,320 C 90,280 120,360 198,318', w: 2.5 },
+          { d: 'M -30,560 C 150,520 60,380 200,335', w: 1.6 },
+          { d: 'M 120,-30 C 180,120 90,220 205,300', w: 2 },
+          { d: 'M 60,670 C 160,560 220,460 210,345', w: 1.3 },
+          { d: 'M -30,180 C 100,220 140,180 196,310', w: 2.8 },
+          { d: 'M 40,-30 C 120,60 160,160 208,296', w: 1.5 },
+          { d: 'M -30,430 C 80,420 150,380 202,330', w: 2.6 },
+          { d: 'M 90,700 C 140,600 190,470 214,352', w: 1.2 },
+          { d: 'M -30,250 C 60,260 150,240 194,314', w: 3.2 },
+          { d: 'M 150,40 C 170,140 200,220 210,298', w: 1.4 },
+          { d: 'M -30,640 C 100,610 170,500 206,342', w: 1.8 },
+        ],
+        l1: 'M 236,320 C 360,296 480,344 592,320',
+        l2: 'M 648,332 C 740,300 820,344 896,320',
+        splits: [
+          'M 896,320 C 940,240 990,160 1044,132',
+          'M 896,320 C 950,280 1040,244 1098,238',
+          'M 896,320 C 950,322 1010,330 1068,334',
+          'M 896,320 C 950,360 1040,420 1108,442',
+          'M 896,320 C 940,400 990,500 1044,542',
+        ],
+        houses: [[1064, 118], [1118, 224], [1088, 320], [1128, 428], [1064, 528]],
+        r1: 'M 896,338 C 820,430 724,430 640,348',
+        r2: 'M 600,348 C 470,436 330,414 228,346',
+        client: { cx: 213, cy: 316, lx: 215, ly: 388, ey: 414 },
+        gp: { x: 620, ty: 336, ly: 372 },
+      },
+      v: {
+        vb: '0 0 420 980',
+        chaos: [
+          { d: 'M 60,-20 C 40,80 120,120 200,168', w: 2 },
+          { d: 'M 360,-20 C 380,90 300,120 222,166', w: 2.6 },
+          { d: 'M -20,120 C 80,120 140,150 196,176', w: 1.5 },
+          { d: 'M 440,160 C 340,150 280,170 224,182', w: 2 },
+          { d: 'M 210,-20 C 200,60 220,100 210,156', w: 1.2 },
+          { d: 'M -20,40 C 60,60 140,110 194,162', w: 2.9 },
+          { d: 'M 440,30 C 360,60 280,110 226,160', w: 1.4 },
+          { d: 'M 130,-20 C 130,50 170,110 202,158', w: 1.7 },
+          { d: 'M 300,-20 C 300,60 250,120 218,162', w: 2.3 },
+        ],
+        l1: 'M 210,204 C 190,290 230,380 210,452',
+        l2: 'M 237,488 C 250,560 192,640 210,692',
+        splits: [
+          'M 210,700 C 180,750 140,790 106,828',
+          'M 210,700 C 214,750 206,800 210,852',
+          'M 210,700 C 240,750 280,790 314,828',
+        ],
+        houses: [[102, 852], [210, 878], [318, 852]],
+        r1: 'M 224,704 C 284,636 262,560 226,506',
+        r2: 'M 196,458 C 150,380 170,270 202,210',
+        client: { cx: 208, cy: 172, lx: 210, ly: 252, ey: 276 },
+        gp: { x: 210, ty: 490, ly: 526 },
+      },
+    };
+  }
+
+  housePath(x, y) {
+    return `M ${x - 14},${y + 14} L ${x - 14},${y - 8} L ${x - 19},${y - 8} L ${x},${y - 25} L ${x + 19},${y - 8} L ${x + 14},${y - 8} L ${x + 14},${y + 14} Z`;
+  }
+
+  componentDidMount() {
+    this._mq = window.matchMedia('(max-width: 700px)');
+    const syncMq = () => this.setState({ mobile: this._mq.matches });
+    this._mq.addEventListener('change', syncMq);
+    syncMq();
+    let raf = null;
+    this._tick = () => { raf = null; this.update(); };
+    this._onScroll = () => { if (!raf) raf = requestAnimationFrame(this._tick); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    window.addEventListener('resize', this._onScroll);
+    this._onScroll();
+    document.fonts.ready.then(() => { this._fontsReady = true; this._gpScene = null; this._onScroll(); });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) this.setupReveals();
+  }
+  setupReveals() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    this._pendingReveals = new Set(els);
+    const reveal = (el) => {
+      if (!this._pendingReveals.has(el)) return;
+      this._pendingReveals.delete(el);
+      const sibs = Array.from(el.parentElement.children).filter((c) => c.hasAttribute('data-reveal'));
+      const delay = sibs.indexOf(el) * 90;
+      el.style.transitionDelay = delay + 'ms';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0px)';
+      setTimeout(() => { el.style.transitionDelay = '0ms'; }, delay + 750);
+      io.unobserve(el);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) reveal(en.target); });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+      el.style.transition = (el.style.transition ? el.style.transition + ',' : '') + 'opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1)';
+      io.observe(el);
+    });
+    this._io = io;
+    this._revealSweep = () => {
+      if (!this._pendingReveals || this._pendingReveals.size === 0) return;
+      const vh = window.innerHeight;
+      this._pendingReveals.forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.95) reveal(el);
+      });
+    };
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onScroll);
+    if (this._mq) this._mq.removeEventListener('change', () => {});
+  }
+
+  q(sel) { return this.sceneRef.current ? this.sceneRef.current.querySelectorAll(sel) : []; }
+  layoutGP() {
+    const g = this.q('[data-anim="gpG"]')[0], pEl = this.q('[data-anim="gpP"]')[0], d = this.q('[data-anim="gpDot"]')[0];
+    if (!g || !pEl || !d) return;
+    const gx = parseFloat(g.getAttribute('x'));
+    const gLen = g.getComputedTextLength();
+    const px = gx + gLen - 0.2 * 46;
+    pEl.setAttribute('x', px);
+    d.setAttribute('x', px + pEl.getComputedTextLength() + 0.07 * 46);
+  }
+  len(el) {
+    const d = el.getAttribute('d');
+    if (el.__lenD !== d) { el.__len = el.getTotalLength(); el.__lenD = d; }
+    return el.__len;
+  }
+  draw(el, t) {
+    const L = this.len(el);
+    el.style.strokeDasharray = L;
+    el.style.strokeDashoffset = L * (1 - t);
+    el.style.opacity = t > 0 ? '' : '0';
+  }
+  ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+  update() {
+    const outer = this.outerRef.current;
+    if (!outer || !this.sceneRef.current) return;
+    const rect = outer.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const total = rect.height - vh;
+    const p = Math.min(1, Math.max(0, -rect.top / total));
+    const clamp = (v) => Math.min(1, Math.max(0, v));
+    if (this.capRef.current) this.capRef.current.style.opacity = p > 0.05 ? '1' : '0';
+    if (this.headRef.current) {
+      const o = clamp(1 - p * 14);
+      this.headRef.current.style.opacity = o;
+      this.headRef.current.style.visibility = o === 0 ? 'hidden' : 'visible';
+    }
+    const chaos = this.q('[data-anim="chaos"]');
+    chaos.forEach((el, i) => this.draw(el, this.ease(clamp((p - i * 0.01) / 0.14))));
+    this.layoutGP();
+    if (this._revealSweep) this._revealSweep();
+    const t2 = this.ease(clamp((p - 0.18) / 0.16));
+    const l1 = this.q('[data-anim="l1"]')[0];
+    if (l1) this.draw(l1, t2);
+    const nodeClient = this.q('[data-anim="nodeClient"]')[0];
+    if (nodeClient) nodeClient.style.opacity = clamp((p - 0.13) / 0.05);
+    const nodeGP = this.q('[data-anim="nodeGP"]')[0];
+    if (nodeGP) nodeGP.style.opacity = clamp((p - 0.3) / 0.05);
+    const t3 = this.ease(clamp((p - 0.34) / 0.16));
+    const l2 = this.q('[data-anim="l2"]')[0];
+    if (l2) this.draw(l2, t3);
+    const gpDot = this.q('[data-anim="gpDot"]')[0];
+    if (gpDot) gpDot.style.opacity = t3 > 0 ? '0' : '1';
+    const splits = this.q('[data-anim="split"]');
+    const houses = this.q('[data-anim="house"]');
+    const p5 = clamp((p - 0.68) / 0.32);
+    splits.forEach((el, i) => {
+      const t = this.ease(clamp((p - 0.5 - i * 0.02) / 0.13));
+      this.draw(el, t);
+      el.style.opacity = t > 0 ? String(1 - this.ease(clamp(p5 * 1.6))) : '0';
+      const h = houses[i];
+      if (h) {
+        h.style.opacity = clamp((p - 0.46) / 0.06);
+        h.style.stroke = t >= 1 ? '#4E86AE' : '#55565C';
+        h.style.filter = t >= 1 ? 'drop-shadow(0 0 6px rgba(94,150,190,0.8))' : '';
+      }
+    });
+    const r1 = this.q('[data-anim="r1"]')[0];
+    const r2 = this.q('[data-anim="r2"]')[0];
+    const tr1 = this.ease(clamp(p5 / 0.5));
+    const tr2 = this.ease(clamp((p5 - 0.5) / 0.5));
+    if (r1) this.draw(r1, tr1);
+    if (r2) this.draw(r2, tr2);
+    const labEnd = this.q('[data-anim="labEnd"]')[0];
+    if (labEnd) labEnd.style.opacity = clamp((p5 - 0.92) / 0.08);
+    const dot = this.q('[data-anim="dot"]')[0];
+    if (dot) {
+      let pt = null;
+      if (t3 > 0 && p5 <= 0 && l2) pt = l2.getPointAtLength(this.len(l2) * t3);
+      else if (p5 > 0 && tr2 <= 0 && r1) pt = r1.getPointAtLength(this.len(r1) * tr1);
+      else if (tr2 > 0 && r2) pt = r2.getPointAtLength(this.len(r2) * tr2);
+      const glow = this.q('[data-anim="dotGlow"]')[0];
+      if (pt) {
+        dot.setAttribute('transform', `translate(${pt.x},${pt.y})`); dot.style.opacity = '1';
+        if (glow) { glow.setAttribute('transform', `translate(${pt.x},${pt.y})`); glow.style.opacity = '0.22'; }
+      } else {
+        dot.style.opacity = '0';
+        if (glow) glow.style.opacity = '0';
+      }
+    }
+    const svg = this.spineSvgRef.current, wrap = this.spineWrapRef.current;
+    const spath = this.spinePathRef.current, sdot = this.spineDotRef.current;
+    if (svg && wrap && spath && sdot) {
+      if (this.state.mobile) { svg.style.display = 'none'; } else {
+        svg.style.display = '';
+        const wr = wrap.getBoundingClientRect();
+        svg.setAttribute('viewBox', `0 0 ${Math.max(1, wr.width)} ${Math.max(1, wr.height)}`);
+        const pts = Array.from(wrap.querySelectorAll('[data-spine-marker]'))
+          .map((m) => { const r = m.getBoundingClientRect(); return [r.left - wr.left - 32, r.top - wr.top + r.height / 2]; })
+          .sort((a, b) => a[1] - b[1]);
+        const all = [[pts[0][0], 0], ...pts];
+        const sig = all.map((q) => q.map(Math.round).join(',')).join(';');
+        if (sig !== this._spineSig) {
+          this._spineSig = sig;
+          let d = `M ${all[0][0]},${all[0][1]}`;
+          const Ls = [0];
+          for (let i = 1; i < all.length; i++) {
+            const [x0, y0] = all[i - 1], [x1, y1] = all[i];
+            const dy = (y1 - y0) * 0.45, s = (i % 2 ? 1 : -1) * 90;
+            d += ` C ${x0 + s},${y0 + dy} ${x1 - s},${y1 - dy} ${x1},${y1}`;
+            spath.setAttribute('d', d);
+            Ls.push(spath.getTotalLength());
+          }
+          this._spineLens = Ls;
+        }
+        const ys = all.map((q) => q[1]);
+        const Ls = this._spineLens;
+        const raw = Math.min(wr.height - 60, Math.max(0, vh * 0.55 - wr.top));
+        const dwell = 200;
+        let tlen = Ls[1] * this.ease(Math.min(1, raw / Math.max(1, ys[1])));
+        for (let i = 1; i < ys.length; i++) {
+          const m = ys[i];
+          if (raw < m) break;
+          const next = ys[i + 1];
+          if (next === undefined || raw < m + dwell) { tlen = Ls[i]; }
+          else { const t = Math.min(1, (raw - m - dwell) / Math.max(1, next - m - dwell)); tlen = Ls[i] + this.ease(t) * (Ls[i + 1] - Ls[i]); }
+        }
+        const total = Ls[Ls.length - 1];
+        spath.style.strokeDasharray = total;
+        spath.style.strokeDashoffset = total - tlen;
+        spath.style.opacity = tlen > 4 ? '1' : '0';
+        const pt = spath.getPointAtLength(tlen);
+        sdot.setAttribute('transform', `translate(${pt.x},${pt.y})`);
+        sdot.setAttribute('opacity', tlen > 10 ? '1' : '0');
+      }
+    }
+    let stage = 0;
+    if (p >= 0.68) stage = 4; else if (p >= 0.5) stage = 3; else if (p >= 0.34) stage = 2; else if (p >= 0.18) stage = 1;
+    if (stage !== this.state.stage) this.setState({ stage });
+  }
+
+  renderVals() {
+    const sc = this.scenes()[this.state.mobile ? 'v' : 'h'];
+    const tel = this.props.telephone ?? '514 000 0000';
+    const mail = this.props.courriel ?? 'info@groupepivot.ca';
+    const caps = [
+      { num: '01', t: 'Le chaos', d: 'De nombreux leads désorganisés et non qualifiés.' },
+      { num: '02', t: 'La prise en charge', d: 'Groupe Pivot centralise et qualifie : le chaos disparaît.' },
+      { num: '03', t: 'Le terrain', d: 'Notre équipe mène chaque lead : visite, mesures, plan, rapport complet.' },
+      { num: '04', t: 'Les résultats', d: 'On pousse l\u2019analyse. Rien n\u2019est laissé au hasard. Chaque lead devient une opportunité.' },
+      { num: '05', t: 'La boucle', d: 'Pour vous? Moins de travail, plus de résultats.' },
+    ];
+    return {
+      outerRef: this.outerRef, sceneRef: this.sceneRef, headRef: this.headRef, capRef: this.capRef, stickRef: this.stickRef,
+      spineWrapRef: this.spineWrapRef, spineSvgRef: this.spineSvgRef, spinePathRef: this.spinePathRef, spineDotRef: this.spineDotRef,
+      vb: sc.vb, chaosPaths: sc.chaos, l1: sc.l1, l2: sc.l2, splitPaths: sc.splits,
+      housePaths: sc.houses.map(([x, y]) => this.housePath(x, y)),
+      r1: sc.r1, r2: sc.r2,
+      client: (({ cx, cy, ...rest }) => ({ ...rest,
+        house: `M ${cx - 26},${cy + 24} L ${cx - 26},${cy - 34} L ${cx - 2},${cy - 34} L ${cx - 2},${cy - 10} L ${cx + 18},${cy - 10} L ${cx + 18},${cy + 24} Z`,
+        crane: `M ${cx + 30},${cy + 24} L ${cx + 46},${cy + 24} M ${cx + 35},${cy + 24} L ${cx + 35},${cy - 56} M ${cx + 41},${cy + 24} L ${cx + 41},${cy - 52} M ${cx + 58},${cy - 56} L ${cx - 20},${cy - 56} M ${cx - 20},${cy - 56} L ${cx - 20},${cy - 38} M ${cx - 28},${cy - 38} L ${cx - 12},${cy - 38}`,
+        craneDetail: `M ${cx + 35},${cy + 18} L ${cx + 41},${cy + 10} L ${cx + 35},${cy + 2} L ${cx + 41},${cy - 6} L ${cx + 35},${cy - 14} L ${cx + 41},${cy - 22} L ${cx + 35},${cy - 30} L ${cx + 41},${cy - 38} L ${cx + 35},${cy - 46} M ${cx + 41},${cy - 52} L ${cx - 16},${cy - 52} M ${cx - 8},${cy - 56} L ${cx - 8},${cy - 52} M ${cx + 4},${cy - 56} L ${cx + 4},${cy - 52} M ${cx + 16},${cy - 56} L ${cx + 16},${cy - 52} M ${cx + 28},${cy - 56} L ${cx + 28},${cy - 52} M ${cx + 38},${cy - 56} L ${cx + 38},${cy - 66} L ${cx - 16},${cy - 56} M ${cx + 38},${cy - 66} L ${cx + 52},${cy - 56}`,
+        weight: `M ${cx + 47},${cy - 56} h 10 v 9 h -10 Z`,
+        cab: `M ${cx + 41},${cy - 52} h 8 v 8 h -8 Z`,
+        windows: [[-21, -28], [-12, -28], [-21, -18], [-12, -18], [-21, -8], [-12, -8], [-21, 2], [-12, 2], [2, -4], [9, -4], [2, 6], [9, 6]].map(([dx, dy]) => `M ${cx + dx},${cy + dy} h 5 v 5 h -5 Z`).join(' '),
+        door: `M ${cx + 6},${cy + 24} L ${cx + 6},${cy + 13} L ${cx + 13},${cy + 13} L ${cx + 13},${cy + 24}`,
+      }))(sc.client),
+      gp: { ...sc.gp, gx: sc.gp.x - 32, px: sc.gp.x - 4, dx: sc.gp.x + 27, dy: sc.gp.ty - 6 },
+      captions: caps.map((c, i) => ({ ...c, op: i === this.state.stage ? 1 : 0, dy: i === this.state.stage ? 0 : 14 })),
+      nom: this.state.nom, tel: this.state.tel, mail: this.state.mail, msg: this.state.msg,
+      onMsg: (e) => this.setState({ msg: e.target.value }),
+      err: this.state.err, badTel: this.state.badTel, badMail: this.state.badMail,
+      sent: this.state.sent, notSent: !this.state.sent, sendLabel: this.state.sending ? 'ENVOI…' : 'ENVOYER',
+      onNom: (e) => this.setState({ nom: e.target.value }),
+      onTel: (e) => this.setState({ tel: e.target.value, err: '', badTel: false, badMail: false }),
+      onMail: (e) => this.setState({ mail: e.target.value, err: '', badTel: false, badMail: false }),
+      onSubmit: (e) => this.submitForm(e),
+      telephone: tel, telHref: 'tel:' + tel.replace(/\s/g, ''),
+      courriel: mail, mailHref: 'mailto:' + mail,
+      etapes: [
+        { num: 'ÉTAPE 01', rot: 0, titre: 'Qualification', texte: 'Chaque lead entrant est contacté en moins de 15 minutes, trié et qualifié selon vos critères. Vous ne perdez plus de temps sur les mauvais projets.' },
+        { num: 'ÉTAPE 02', rot: 90, titre: 'Visite terrain', texte: 'On se déplace chez votre client : mesures, photos, relevé complet des besoins. Vous restez sur vos chantiers.' },
+        { num: 'ÉTAPE 03', rot: 180, titre: 'Plan et rapport', texte: 'Plan 2D et rapport détaillé, livrés prêts pour votre soumission. Tout ce qu\u2019il faut pour chiffrer juste, sans y avoir mis un pied.' },
+        { num: 'ÉTAPE 04', rot: 270, titre: 'Signature', texte: 'Avec le service Signature, on présente la soumission et on ferme le deal pour vous — négociation et signature incluses.' },
+      ],
+      chiffres: [
+        { valeur: '< 15 min', label: 'DÉLAI DE CONTACT DES LEADS' },
+        { valeur: '0 embauche', label: 'NI SALAIRE, NI FORMATION, NI ROULEMENT' },
+        { valeur: 'A à Z', label: 'DU PREMIER APPEL À LA SIGNATURE' },
+      ],
+      forfaits: [
+        { nom: 'ESSENTIEL', badge: '', pitch: 'Vous choisissez les leads à faire estimer. On livre le dossier complet, prêt à soumissionner.',
+          items: ['Prise de rendez-vous avec votre client', 'Visite terrain : mesures, photos, relevés', 'Plan 2D du projet', 'Rapport complet, prêt pour soumission'],
+          bg: '#FFFFFF', fg: '#17181C', border: '#B8B9BE', muted: '#55565C' },
+        { nom: 'CROISSANCE', badge: '', pitch: 'On prend en charge tout votre flux de leads entrants, du premier contact au rapport.',
+          items: ['Tout le service Essentiel', 'Contact de chaque lead en moins de 15 minutes', 'Triage et qualification selon vos critères', 'Seuls les leads sérieux passent en visite'],
+          bg: '#FFFFFF', fg: '#17181C', border: '#B8B9BE', muted: '#55565C' },
+        { nom: 'SIGNATURE', badge: 'RECOMMANDÉ', pitch: 'Votre force de vente complète : on présente, on négocie, on signe.',
+          items: ['Tout le service Croissance', 'Présentation de la soumission à votre client', 'Négociation et closing', 'Pensé pour les projets d\u2019envergure'],
+          bg: '#17181C', fg: '#F5F4F0', border: '#55565C', muted: '#B8B9BE' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
