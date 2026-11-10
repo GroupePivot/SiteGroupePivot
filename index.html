@@ -22,22 +22,43 @@ a:hover{color:#17181C}
 .pv-in:focus{outline:2px solid #3E6E91;outline-offset:2px;border-color:#F5F4F0}
 .pv-in[aria-invalid="true"]{border-color:#F0A56B}
 .pv-go:focus-visible{outline:2px solid #F5F4F0;outline-offset:3px}
+@media (max-width:700px){
+.pv-nav{padding:12px 16px!important}
+.pv-logo{font-size:17px!important;white-space:nowrap}
+.pv-links{gap:0!important}
+.pv-hide-m{display:none!important}
+.pv-cta-nav{padding:10px 16px!important;font-size:12px!important;white-space:nowrap}
+.pv-sec{padding:72px 20px!important}
+.pv-sec-contact{padding:80px 20px!important}
+.pv-prob-grid{grid-template-columns:minmax(0,1fr)!important;gap:32px!important}
+.pv-line{display:none!important}
+.pv-h1{font-size:38px!important;padding:0 20px;box-sizing:border-box}
+.pv-eyebrow{padding:0 20px;text-align:center}
+.pv-scene{align-items:flex-start!important;padding-top:64px;box-sizing:border-box}
+.pv-svg{height:calc(100% - 290px)!important;min-height:300px}
+.pv-cap{left:20px!important;bottom:28px!important;width:calc(100% - 40px)!important}
+.pv-cap-t{font-size:30px!important}
+.pv-cap-d{font-size:17px!important}
+.pv-ctas{width:100%}
+.pv-cta{width:100%;box-sizing:border-box;text-align:center}
+.pv-foot{padding:24px 20px!important;justify-content:center!important;text-align:center}
+}
 </style>
 </helmet>
 <div style="background:#F5F4F0">
-  <nav style="position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(245,244,240,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #B8B9BE">
-    <div style="font-weight:900;font-size:20px;letter-spacing:0.02em">GROUPE PIVOT<span style="color:#3E6E91">.</span></div>
-    <div style="display:flex;gap:32px;align-items:center">
-      <a href="#methode" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">MÉTHODE</a>
-      <a href="#forfaits" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">SERVICES</a>
-      <a href="#contact" style="font-size:13px;font-weight:600;letter-spacing:0.12em;color:#F5F4F0;background:#17181C;padding:12px 24px" style-hover="background:#3E6E91;color:#F5F4F0">PARLONS-EN</a>
+  <nav class="pv-nav" style="position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(245,244,240,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #B8B9BE">
+    <div class="pv-logo" style="font-weight:900;font-size:20px;letter-spacing:0.02em">GROUPE PIVOT<span style="color:#3E6E91">.</span></div>
+    <div class="pv-links" style="display:flex;gap:32px;align-items:center">
+      <a class="pv-hide-m" href="#methode" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">MÉTHODE</a>
+      <a class="pv-hide-m" href="#forfaits" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">SERVICES</a>
+      <a class="pv-cta-nav" href="#contact" style="font-size:13px;font-weight:600;letter-spacing:0.12em;color:#F5F4F0;background:#17181C;padding:12px 24px" style-hover="background:#3E6E91;color:#F5F4F0">PARLONS-EN</a>
     </div>
   </nav>
 
   <div data-screen-label="Héros scrollytelling" ref="{{ outerRef }}" style="height:480vh;background:#17181C;position:relative">
     <div ref="{{ stickRef }}" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center">
-      <div ref="{{ sceneRef }}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
-        <svg viewBox="{{ vb }}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:92%;display:block">
+      <div class="pv-scene" ref="{{ sceneRef }}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+        <svg class="pv-svg" viewBox="{{ vb }}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:92%;display:block">
           <rect data-anim="dotGlow" x="-46" y="-46" width="92" height="92" fill="#3E6E91" opacity="0" style="filter:blur(14px)"></rect>
           <sc-for list="{{ chaosPaths }}" as="cp" hint-placeholder-count="6">
             <path data-anim="chaos" d="{{ cp.d }}" fill="none" stroke="#55565C" stroke-width="{{ cp.w }}" stroke-linecap="round" style="filter:drop-shadow(0 0 4px rgba(184,185,190,0.45))"></path>
@@ -76,22 +97,22 @@ a:hover{color:#17181C}
       </div>
       <div ref="{{ headRef }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;background:rgba(23,24,28,0.55)">
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px">
-          <div style="width:48px;height:1px;background:#B8B9BE"></div>
-          <div style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">FORCE DE VENTE SUR MESURE</div>
-          <div style="width:48px;height:1px;background:#B8B9BE"></div>
+          <div class="pv-line" style="width:48px;height:1px;background:#B8B9BE"></div>
+          <div class="pv-eyebrow" style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">FORCE DE VENTE SUR MESURE</div>
+          <div class="pv-line" style="width:48px;height:1px;background:#B8B9BE"></div>
         </div>
-        <h1 style="margin:0;color:#F5F4F0;font-weight:900;font-size:clamp(44px,7vw,96px);line-height:0.98;text-transform:uppercase">Vous bâtissez.<br>On s'occupe du reste<span style="color:#3E6E91">.</span></h1>
+        <h1 class="pv-h1" style="margin:0;color:#F5F4F0;font-weight:900;font-size:clamp(44px,7vw,96px);line-height:0.98;text-transform:uppercase">Vous bâtissez.<br>On s'occupe du reste<span style="color:#3E6E91">.</span></h1>
         <div style="margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:10px">
           <div style="font-size:12px;font-weight:500;letter-spacing:0.24em;color:#B8B9BE">DÉFILEZ</div>
           <div style="width:1px;height:44px;background:#3E6E91"></div>
         </div>
       </div>
-      <div ref="{{ capRef }}" style="position:absolute;left:48px;bottom:44px;width:min(640px,80vw);opacity:0;transition:opacity 0.4s ease">
+      <div class="pv-cap" ref="{{ capRef }}" style="position:absolute;left:48px;bottom:44px;width:min(640px,80vw);opacity:0;transition:opacity 0.4s ease">
         <sc-for list="{{ captions }}" as="c" hint-placeholder-count="5">
           <div style="position:absolute;bottom:0;left:0;width:100%;opacity:{{ c.op }};transform:translateY({{ c.dy }}px);transition:opacity 0.45s ease,transform 0.45s ease;pointer-events:none">
             <div style="font-size:17px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">{{ c.num }}</div>
-            <div style="font-weight:900;font-size:clamp(32px,4vw,52px);line-height:1.05;color:#F5F4F0;text-transform:uppercase;margin-bottom:14px">{{ c.t }}</div>
-            <div style="font-size:clamp(18px,2.2vw,28px);line-height:1.5;color:#B8B9BE">{{ c.d }}</div>
+            <div class="pv-cap-t" style="font-weight:900;font-size:clamp(32px,4vw,52px);line-height:1.05;color:#F5F4F0;text-transform:uppercase;margin-bottom:14px">{{ c.t }}</div>
+            <div class="pv-cap-d" style="font-size:clamp(18px,2.2vw,28px);line-height:1.5;color:#B8B9BE">{{ c.d }}</div>
           </div>
         </sc-for>
       </div>
@@ -103,8 +124,8 @@ a:hover{color:#17181C}
     <path ref="{{ spinePathRef }}" fill="none" stroke="#3E6E91" stroke-width="2" stroke-linecap="round" opacity="0" style="filter:drop-shadow(0 0 5px rgba(94,150,190,0.7))"></path>
     <rect ref="{{ spineDotRef }}" x="-7" y="-7" width="14" height="14" fill="#3E6E91" opacity="0" style="filter:drop-shadow(0 0 6px rgba(94,150,190,0.95)) drop-shadow(0 0 18px rgba(62,110,145,0.6))"></rect>
   </svg>
-  <section data-screen-label="Le problème" style="padding:110px 48px;max-width:1100px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:64px;align-items:start">
+  <section class="pv-sec" data-screen-label="Le problème" style="padding:110px 48px;max-width:1100px;margin:0 auto">
+    <div class="pv-prob-grid" style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:64px;align-items:start">
       <div data-reveal>
         <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">01 — LE PROBLÈME</div>
         <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Vendre gruge le temps de bâtir</h2>
@@ -118,7 +139,7 @@ a:hover{color:#17181C}
     </div>
   </section>
 
-  <section id="methode" data-screen-label="Méthode" style="background:#17181C;color:#F5F4F0;padding:110px 48px">
+  <section class="pv-sec" id="methode" data-screen-label="Méthode" style="background:#17181C;color:#F5F4F0;padding:110px 48px">
     <div style="max-width:1100px;margin:0 auto">
       <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:64px">
         <div data-reveal>
@@ -150,7 +171,7 @@ a:hover{color:#17181C}
     </div>
   </section>
 
-  <section id="forfaits" data-screen-label="Forfaits" style="padding:110px 48px;max-width:1100px;margin:0 auto">
+  <section class="pv-sec" id="forfaits" data-screen-label="Forfaits" style="padding:110px 48px;max-width:1100px;margin:0 auto">
     <div data-reveal style="text-align:center;margin-bottom:24px">
       <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">03 — LES SERVICES</div>
       <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Un accompagnement à votre mesure</h2>
@@ -182,19 +203,19 @@ a:hover{color:#17181C}
     </div>
   </section>
 
-  <section id="contact" data-screen-label="Contact" style="background:#17181C;color:#F5F4F0;padding:130px 48px;position:relative;overflow:hidden">
+  <section class="pv-sec-contact" id="contact" data-screen-label="Contact" style="background:#17181C;color:#F5F4F0;padding:130px 48px;position:relative;overflow:hidden">
     <div style="position:absolute;left:-6%;bottom:-22%;font-weight:900;font-size:520px;line-height:1;color:#F5F4F0;opacity:0.04;user-select:none;pointer-events:none;transform:rotate(90deg)">G</div>
     <div style="position:relative;max-width:760px;margin:0 auto;text-align:center;display:grid;gap:32px;justify-items:center">
       <div data-reveal data-spine-marker style="display:flex;align-items:center;gap:16px">
-        <div style="width:48px;height:1px;background:#55565C"></div>
-        <div style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">15 MINUTES. AUCUN ENGAGEMENT.</div>
-        <div style="width:48px;height:1px;background:#55565C"></div>
+        <div class="pv-line" style="width:48px;height:1px;background:#55565C"></div>
+        <div class="pv-eyebrow" style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">15 MINUTES. AUCUN ENGAGEMENT.</div>
+        <div class="pv-line" style="width:48px;height:1px;background:#55565C"></div>
       </div>
       <h2 data-reveal style="margin:0;font-weight:900;font-size:clamp(36px,5vw,64px);line-height:1;text-transform:uppercase">Votre carnet de commandes mérite mieux<span style="color:#3E6E91">.</span></h2>
       <p data-reveal style="margin:0;font-size:17px;line-height:1.65;color:#B8B9BE;max-width:520px">Une rencontre de 15 minutes suffit pour voir si Groupe Pivot peut vous être utile. On compare, ça ne vous engage à rien.</p>
-      <div data-reveal style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
-        <a href="{{ telHref }}" style="display:inline-block;background:#F5F4F0;color:#17181C;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="background:#3E6E91;color:#F5F4F0">{{ telephone }}</a>
-        <a href="{{ mailHref }}" style="display:inline-block;border:1px solid #55565C;color:#F5F4F0;font-weight:500;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="border:1px solid #F5F4F0;color:#F5F4F0">{{ courriel }}</a>
+      <div class="pv-ctas" data-reveal style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
+        <a class="pv-cta" href="{{ telHref }}" style="display:inline-block;background:#F5F4F0;color:#17181C;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="background:#3E6E91;color:#F5F4F0">{{ telephone }}</a>
+        <a class="pv-cta" href="{{ mailHref }}" style="display:inline-block;border:1px solid #55565C;color:#F5F4F0;font-weight:500;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="border:1px solid #F5F4F0;color:#F5F4F0">{{ courriel }}</a>
       </div>
       <div data-reveal style="width:100%;max-width:520px;display:grid;gap:28px;justify-items:center">
         <div style="display:flex;align-items:center;gap:16px;width:100%">
@@ -204,9 +225,15 @@ a:hover{color:#17181C}
         </div>
         <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
           <form onSubmit="{{ onSubmit }}" novalidate style="width:100%;display:grid;gap:16px;text-align:left">
-            <div style="display:grid;gap:8px">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
+            <div style="display:grid;gap:8px;align-content:start;min-width:0">
               <label for="pv-nom" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">NOM <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">(optionnel)</span></label>
               <input id="pv-nom" class="pv-in" type="text" name="nom" autocomplete="name" placeholder="Votre nom" value="{{ nom }}" onChange="{{ onNom }}">
+            </div>
+            <div style="display:grid;gap:8px;align-content:start;min-width:0">
+              <label for="pv-ent" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">ENTREPRISE <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">(optionnel)</span></label>
+              <input id="pv-ent" class="pv-in" type="text" name="entreprise" autocomplete="organization" placeholder="Nom de l’entreprise" value="{{ company }}" onChange="{{ onCompany }}">
+            </div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
               <div style="display:grid;gap:8px;align-content:start;min-width:0">
@@ -238,7 +265,7 @@ a:hover{color:#17181C}
     </div>
   </section>
 
-  <footer style="background:#17181C;color:#55565C;border-top:1px solid #2A2B31;padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+  <footer class="pv-foot" style="background:#17181C;color:#55565C;border-top:1px solid #2A2B31;padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
     <div style="font-weight:900;font-size:15px;color:#B8B9BE">G<span style="color:#3E6E91">P</span>.</div>
     <div style="font-size:12px;letter-spacing:0.14em">GROUPE PIVOT — FORCE DE VENTE SUR MESURE</div>
     <div style="font-size:12px;letter-spacing:0.1em">© 2026 GROUPE PIVOT</div>
@@ -248,7 +275,7 @@ a:hover{color:#17181C}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;telephone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;450 300 9820&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;},&quot;courriel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;info@groupepivot.ca&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;}}">
 class Component extends DCLogic {
-  state = { stage: 0, mobile: false, nom: '', tel: '', mail: '', msg: '', err: '', badTel: false, badMail: false, sent: false, sending: false };
+  state = { stage: 0, mobile: false, nom: '', company: '', tel: '', mail: '', msg: '', err: '', badTel: false, badMail: false, sent: false, sending: false };
 
   submitForm(e) {
     if (e && e.preventDefault) e.preventDefault();
@@ -268,7 +295,7 @@ class Component extends DCLogic {
     }
     if (err) { this.setState({ err, badTel, badMail }); return; }
     if (!WEBHOOK) { this.setState({ sent: true, err: '', badTel: false, badMail: false }); return; }
-    const body = new URLSearchParams({ name: nom, phone: tel, email: mail, message: this.state.msg.trim(), source: 'Site Groupe Pivot' });
+    const body = new URLSearchParams({ name: nom, phone: tel, email: mail, company_name: this.state.company.trim(), message: this.state.msg.trim(), source: 'Site Groupe Pivot' });
     this.setState({ sending: true, err: '', badTel: false, badMail: false });
     fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body })
       .then(() => this.setState({ sent: true, sending: false }))
@@ -573,6 +600,8 @@ class Component extends DCLogic {
       captions: caps.map((c, i) => ({ ...c, op: i === this.state.stage ? 1 : 0, dy: i === this.state.stage ? 0 : 14 })),
       nom: this.state.nom, tel: this.state.tel, mail: this.state.mail, msg: this.state.msg,
       onMsg: (e) => this.setState({ msg: e.target.value }),
+      company: this.state.company,
+      onCompany: (e) => this.setState({ company: e.target.value }),
       err: this.state.err, badTel: this.state.badTel, badMail: this.state.badMail,
       sent: this.state.sent, notSent: !this.state.sent, sendLabel: this.state.sending ? 'ENVOI…' : 'ENVOYER',
       onNom: (e) => this.setState({ nom: e.target.value }),
