@@ -41,6 +41,8 @@ a:hover{color:#17181C}
 .pv-cap{left:20px!important;bottom:calc(24px + env(safe-area-inset-bottom,0px))!important;width:calc(100% - 40px)!important}
 .pv-cap-t{font-size:28px!important;margin-bottom:10px!important}
 .pv-cap-d{font-size:16px!important}
+.pv-svg [data-anim="labEnd"]{fill:#7FB0D4!important}
+.pv-svg .pv-lab{font-size:15px!important;stroke:#17181C;stroke-width:6px;stroke-linejoin:round;paint-order:stroke}
 .pv-ctas{width:100%}
 .pv-cta{width:100%;box-sizing:border-box;text-align:center}
 .pv-foot{padding:24px 20px!important;justify-content:center!important;text-align:center}
@@ -84,7 +86,7 @@ a:hover{color:#17181C}
             <path d="{{ client.house }}" fill="#17181C" stroke="#F5F4F0" stroke-width="2.5" stroke-linejoin="round"></path>
             <path d="{{ client.windows }}" fill="#B8B9BE" opacity="0.9"></path>
             <path d="{{ client.door }}" fill="none" stroke="#F5F4F0" stroke-width="1.5" stroke-linejoin="round"></path>
-            <text x="{{ client.lx }}" y="{{ client.ly }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#B8B9BE">VOTRE ENTREPRISE</text>
+            <text class="pv-lab" x="{{ client.lx }}" y="{{ client.ly }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#B8B9BE">VOTRE ENTREPRISE</text>
           </g>
           <g data-anim="nodeGP" opacity="0" style="filter:drop-shadow(0 0 14px rgba(245,244,240,0.18))">
             <text data-anim="gpP" x="{{ gp.px }}" y="{{ gp.ty }}" font-family="Archivo" font-size="46" font-weight="900" fill="#3E6E91">P</text>
@@ -92,7 +94,7 @@ a:hover{color:#17181C}
             <rect data-anim="gpDot" x="{{ gp.dx }}" y="{{ gp.dy }}" width="9" height="9" fill="#3E6E91"></rect>
             <text x="{{ gp.x }}" y="{{ gp.ly }}" text-anchor="middle" font-family="Archivo" font-size="15" font-weight="900" fill="#F5F4F0">GROUPE PIVOT<tspan fill="#3E6E91">.</tspan></text>
           </g>
-          <text data-anim="labEnd" x="{{ client.lx }}" y="{{ client.ey }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#3E6E91" opacity="0">RÉSULTATS LIVRÉS</text>
+          <text class="pv-lab" data-anim="labEnd" x="{{ client.lx }}" y="{{ client.ey }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#3E6E91" opacity="0">RÉSULTATS LIVRÉS</text>
           <g data-anim="dot" opacity="0">
             <rect x="-7" y="-7" width="14" height="14" fill="#3E6E91" style="filter:drop-shadow(0 0 6px rgba(94,150,190,0.95)) drop-shadow(0 0 18px rgba(62,110,145,0.6))"></rect>
           </g>
@@ -377,15 +379,17 @@ class Component extends DCLogic {
   }
 
   compactV(v) {
-    const k = 0.58;
-    const sy = (d) => d.replace(/(-?[\d.]+),(-?[\d.]+)/g, (m, x, y) => x + ',' + (parseFloat(y) * k).toFixed(1));
-    return { ...v, vb: '0 0 420 530',
-      chaos: v.chaos.map((c) => ({ ...c, d: sy(c.d) })),
+    const k = 0.58, off = 30;
+    const re = /(-?[\d.]+),(-?[\d.]+)/g;
+    const sy = (d) => d.replace(re, (m, x, y) => x + ',' + (parseFloat(y) * k + off).toFixed(1));
+    const syc = (d) => d.replace(re, (m, x, y) => { const yy = parseFloat(y); return x + ',' + (yy * k + off * Math.min(1, Math.max(0, yy / 165))).toFixed(1); });
+    return { ...v, vb: '0 0 420 560',
+      chaos: v.chaos.map((c) => ({ ...c, d: syc(c.d) })),
       l1: sy(v.l1), l2: sy(v.l2), splits: v.splits.map(sy),
-      houses: v.houses.map(([x, y]) => [x, y * k]),
+      houses: v.houses.map(([x, y]) => [x, y * k + off]),
       r1: sy(v.r1), r2: sy(v.r2),
-      client: { ...v.client, cy: v.client.cy * k, ly: v.client.ly * k, ey: v.client.ey * k },
-      gp: { ...v.gp, ty: v.gp.ty * k, ly: v.gp.ly * k } };
+      client: { ...v.client, cy: v.client.cy * k + off, ly: v.client.cy * k + off - 76, ey: v.client.cy * k + off - 96 },
+      gp: { ...v.gp, ty: v.gp.ty * k + off, ly: v.gp.ly * k + off } };
   }
 
   housePath(x, y) {
