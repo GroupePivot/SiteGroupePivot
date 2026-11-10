@@ -34,20 +34,22 @@ a:hover{color:#17181C}
 .pv-line{display:none!important}
 .pv-h1{font-size:38px!important;padding:0 20px;box-sizing:border-box}
 .pv-eyebrow{padding:0 20px;text-align:center}
-.pv-scene{align-items:flex-start!important;padding-top:64px;box-sizing:border-box}
-.pv-svg{height:calc(100% - 290px)!important;min-height:300px}
-.pv-cap{left:20px!important;bottom:28px!important;width:calc(100% - 40px)!important}
-.pv-cap-t{font-size:30px!important}
-.pv-cap-d{font-size:17px!important}
+.pv-scene{align-items:flex-start!important;padding-top:60px;box-sizing:border-box}
+.pv-svg{height:calc(100% - 175px)!important;min-height:280px}
+.pv-stick{height:100svh!important}
+.pv-outer{height:480svh!important}
+.pv-cap{left:20px!important;bottom:calc(24px + env(safe-area-inset-bottom,0px))!important;width:calc(100% - 40px)!important}
+.pv-cap-t{font-size:28px!important;margin-bottom:10px!important}
+.pv-cap-d{font-size:16px!important}
 .pv-ctas{width:100%}
 .pv-cta{width:100%;box-sizing:border-box;text-align:center}
 .pv-foot{padding:24px 20px!important;justify-content:center!important;text-align:center}
 }
 </style>
 </helmet>
-<div style="background:#F5F4F0">
+<div id="accueil" style="background:#F5F4F0">
   <nav class="pv-nav" style="position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(245,244,240,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #B8B9BE">
-    <div class="pv-logo" style="font-weight:900;font-size:20px;letter-spacing:0.02em">GROUPE PIVOT<span style="color:#3E6E91">.</span></div>
+    <a class="pv-logo" href="#accueil" aria-label="Groupe Pivot, retour à l'accueil" style="font-weight:900;font-size:20px;letter-spacing:0.02em;color:#17181C;text-decoration:none" style-hover="color:#17181C">GROUPE PIVOT<span style="color:#3E6E91">.</span></a>
     <div class="pv-links" style="display:flex;gap:32px;align-items:center">
       <a class="pv-hide-m" href="#methode" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">MÉTHODE</a>
       <a class="pv-hide-m" href="#forfaits" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">SERVICES</a>
@@ -55,10 +57,11 @@ a:hover{color:#17181C}
     </div>
   </nav>
 
-  <div data-screen-label="Héros scrollytelling" ref="{{ outerRef }}" style="height:480vh;background:#17181C;position:relative">
-    <div ref="{{ stickRef }}" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center">
+  <div data-screen-label="Héros scrollytelling" class="pv-outer" ref="{{ outerRef }}" style="height:480vh;background:#17181C;position:relative">
+    <div class="pv-stick" ref="{{ stickRef }}" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center">
       <div class="pv-scene" ref="{{ sceneRef }}" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center">
         <svg class="pv-svg" viewBox="{{ vb }}" preserveAspectRatio="xMidYMid meet" style="width:100%;height:92%;display:block">
+          <defs><radialGradient id="pvGlow"><stop offset="0" stop-color="#5E96BE" stop-opacity="0.9"></stop><stop offset="0.4" stop-color="#3E6E91" stop-opacity="0.4"></stop><stop offset="1" stop-color="#3E6E91" stop-opacity="0"></stop></radialGradient></defs>
           <rect data-anim="dotGlow" x="-46" y="-46" width="92" height="92" fill="#3E6E91" opacity="0" style="filter:blur(14px)"></rect>
           <sc-for list="{{ chaosPaths }}" as="cp" hint-placeholder-count="6">
             <path data-anim="chaos" d="{{ cp.d }}" fill="none" stroke="#55565C" stroke-width="{{ cp.w }}" stroke-linecap="round" style="filter:drop-shadow(0 0 4px rgba(184,185,190,0.45))"></path>
@@ -373,6 +376,18 @@ class Component extends DCLogic {
     };
   }
 
+  compactV(v) {
+    const k = 0.58;
+    const sy = (d) => d.replace(/(-?[\d.]+),(-?[\d.]+)/g, (m, x, y) => x + ',' + (parseFloat(y) * k).toFixed(1));
+    return { ...v, vb: '0 0 420 530',
+      chaos: v.chaos.map((c) => ({ ...c, d: sy(c.d) })),
+      l1: sy(v.l1), l2: sy(v.l2), splits: v.splits.map(sy),
+      houses: v.houses.map(([x, y]) => [x, y * k]),
+      r1: sy(v.r1), r2: sy(v.r2),
+      client: { ...v.client, cy: v.client.cy * k, ly: v.client.ly * k, ey: v.client.ey * k },
+      gp: { ...v.gp, ty: v.gp.ty * k, ly: v.gp.ly * k } };
+  }
+
   housePath(x, y) {
     return `M ${x - 14},${y + 14} L ${x - 14},${y - 8} L ${x - 19},${y - 8} L ${x},${y - 25} L ${x + 19},${y - 8} L ${x + 14},${y - 8} L ${x + 14},${y + 14} Z`;
   }
@@ -511,9 +526,17 @@ class Component extends DCLogic {
       else if (p5 > 0 && tr2 <= 0 && r1) pt = r1.getPointAtLength(this.len(r1) * tr1);
       else if (tr2 > 0 && r2) pt = r2.getPointAtLength(this.len(r2) * tr2);
       const glow = this.q('[data-anim="dotGlow"]')[0];
+      if (glow) {
+        const m = this.state.mobile, r = m ? 64 : 46;
+        glow.setAttribute('x', -r); glow.setAttribute('y', -r);
+        glow.setAttribute('width', r * 2); glow.setAttribute('height', r * 2);
+        glow.setAttribute('rx', m ? r : 0);
+        glow.setAttribute('fill', m ? 'url(#pvGlow)' : '#3E6E91');
+        glow.style.filter = m ? 'none' : 'blur(14px)';
+      }
       if (pt) {
         dot.setAttribute('transform', `translate(${pt.x},${pt.y})`); dot.style.opacity = '1';
-        if (glow) { glow.setAttribute('transform', `translate(${pt.x},${pt.y})`); glow.style.opacity = '0.22'; }
+        if (glow) { glow.setAttribute('transform', `translate(${pt.x},${pt.y})`); glow.style.opacity = this.state.mobile ? '0.85' : '0.22'; }
       } else {
         dot.style.opacity = '0';
         if (glow) glow.style.opacity = '0';
@@ -571,7 +594,8 @@ class Component extends DCLogic {
   }
 
   renderVals() {
-    const sc = this.scenes()[this.state.mobile ? 'v' : 'h'];
+    const raw = this.scenes()[this.state.mobile ? 'v' : 'h'];
+    const sc = this.state.mobile ? this.compactV(raw) : raw;
     const tel = this.props.telephone ?? '514 000 0000';
     const mail = this.props.courriel ?? 'info@groupepivot.ca';
     const caps = [
