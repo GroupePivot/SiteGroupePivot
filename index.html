@@ -22,10 +22,14 @@ a:hover{color:#17181C}
 .pv-in:focus{outline:2px solid #3E6E91;outline-offset:2px;border-color:#F5F4F0}
 .pv-in[aria-invalid="true"]{border-color:#F0A56B}
 .pv-go:focus-visible{outline:2px solid #F5F4F0;outline-offset:3px}
+.pv-lang{font-family:'Archivo',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;color:#17181C;background:transparent;border:1px solid #8F9096;padding:9px 14px;cursor:pointer;transition:border-color 0.2s ease,background 0.2s ease}
+.pv-lang:hover{border-color:#17181C;background:rgba(23,24,28,0.05)}
+.pv-lang:focus-visible{outline:2px solid #3E6E91;outline-offset:2px}
 @media (max-width:700px){
 .pv-nav{padding:12px 16px!important}
 .pv-logo{font-size:17px!important;white-space:nowrap}
-.pv-links{gap:0!important}
+.pv-links{gap:8px!important}
+.pv-lang{padding:9px 10px!important}
 .pv-hide-m{display:none!important}
 .pv-cta-nav{padding:10px 16px!important;font-size:12px!important;white-space:nowrap}
 .pv-sec{padding:72px 20px!important}
@@ -51,11 +55,12 @@ a:hover{color:#17181C}
 </helmet>
 <div id="accueil" style="background:#F5F4F0">
   <nav class="pv-nav" style="position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(245,244,240,0.92);backdrop-filter:blur(8px);border-bottom:1px solid #B8B9BE">
-    <a class="pv-logo" href="#accueil" aria-label="Groupe Pivot, retour à l'accueil" style="font-weight:900;font-size:20px;letter-spacing:0.02em;color:#17181C;text-decoration:none" style-hover="color:#17181C">GROUPE PIVOT<span style="color:#3E6E91">.</span></a>
+    <a class="pv-logo" href="#accueil" aria-label="{{ t.logoAria }}" style="font-weight:900;font-size:20px;letter-spacing:0.02em;color:#17181C;text-decoration:none" style-hover="color:#17181C">GROUPE PIVOT<span style="color:#3E6E91">.</span></a>
     <div class="pv-links" style="display:flex;gap:32px;align-items:center">
-      <a class="pv-hide-m" href="#methode" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">MÉTHODE</a>
-      <a class="pv-hide-m" href="#forfaits" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">SERVICES</a>
-      <a class="pv-cta-nav" href="#contact" style="font-size:13px;font-weight:600;letter-spacing:0.12em;color:#F5F4F0;background:#17181C;padding:12px 24px" style-hover="background:#3E6E91;color:#F5F4F0">PARLONS-EN</a>
+      <a class="pv-hide-m" href="#methode" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">{{ t.navMethode }}</a>
+      <a class="pv-hide-m" href="#forfaits" style="font-size:13px;font-weight:500;letter-spacing:0.12em;color:#55565C" style-hover="color:#17181C">{{ t.navFor }}</a>
+      <button type="button" class="pv-lang" onClick="{{ toggleLang }}" aria-label="{{ t.langAria }}">{{ t.langBtn }}</button>
+      <a class="pv-cta-nav" href="#contact" style="font-size:13px;font-weight:600;letter-spacing:0.12em;color:#F5F4F0;background:#17181C;padding:12px 24px" style-hover="background:#3E6E91;color:#F5F4F0">{{ t.navCta }}</a>
     </div>
   </nav>
 
@@ -86,7 +91,7 @@ a:hover{color:#17181C}
             <path d="{{ client.house }}" fill="#17181C" stroke="#F5F4F0" stroke-width="2.5" stroke-linejoin="round"></path>
             <path d="{{ client.windows }}" fill="#B8B9BE" opacity="0.9"></path>
             <path d="{{ client.door }}" fill="none" stroke="#F5F4F0" stroke-width="1.5" stroke-linejoin="round"></path>
-            <text class="pv-lab" x="{{ client.lx }}" y="{{ client.ly }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#B8B9BE">VOTRE ENTREPRISE</text>
+            <text class="pv-lab" x="{{ client.lx }}" y="{{ client.ly }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#B8B9BE">{{ t.labClient }}</text>
           </g>
           <g data-anim="nodeGP" opacity="0" style="filter:drop-shadow(0 0 14px rgba(245,244,240,0.18))">
             <text data-anim="gpP" x="{{ gp.px }}" y="{{ gp.ty }}" font-family="Archivo" font-size="46" font-weight="900" fill="#3E6E91">P</text>
@@ -94,7 +99,7 @@ a:hover{color:#17181C}
             <rect data-anim="gpDot" x="{{ gp.dx }}" y="{{ gp.dy }}" width="9" height="9" fill="#3E6E91"></rect>
             <text x="{{ gp.x }}" y="{{ gp.ly }}" text-anchor="middle" font-family="Archivo" font-size="15" font-weight="900" fill="#F5F4F0">GROUPE PIVOT<tspan fill="#3E6E91">.</tspan></text>
           </g>
-          <text class="pv-lab" data-anim="labEnd" x="{{ client.lx }}" y="{{ client.ey }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#3E6E91" opacity="0">RÉSULTATS LIVRÉS</text>
+          <text class="pv-lab" data-anim="labEnd" x="{{ client.lx }}" y="{{ client.ey }}" text-anchor="middle" font-family="Archivo" font-size="12" font-weight="600" letter-spacing="2.5" fill="#3E6E91" opacity="0">{{ t.labEnd }}</text>
           <g data-anim="dot" opacity="0">
             <rect x="-7" y="-7" width="14" height="14" fill="#3E6E91" style="filter:drop-shadow(0 0 6px rgba(94,150,190,0.95)) drop-shadow(0 0 18px rgba(62,110,145,0.6))"></rect>
           </g>
@@ -103,12 +108,12 @@ a:hover{color:#17181C}
       <div ref="{{ headRef }}" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none;background:rgba(23,24,28,0.55)">
         <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px">
           <div class="pv-line" style="width:48px;height:1px;background:#B8B9BE"></div>
-          <div class="pv-eyebrow" style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">FORCE DE VENTE SUR MESURE</div>
+          <div class="pv-eyebrow" style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">{{ t.eyebrow }}</div>
           <div class="pv-line" style="width:48px;height:1px;background:#B8B9BE"></div>
         </div>
-        <h1 class="pv-h1" style="margin:0;color:#F5F4F0;font-weight:900;font-size:clamp(44px,7vw,96px);line-height:0.98;text-transform:uppercase">Vous bâtissez.<br>On s'occupe du reste<span style="color:#3E6E91">.</span></h1>
+        <h1 class="pv-h1" style="margin:0;color:#F5F4F0;font-weight:900;font-size:clamp(44px,7vw,96px);line-height:0.98;text-transform:uppercase">{{ t.h1a }}<br>{{ t.h1b }}<span style="color:#3E6E91">.</span></h1>
         <div style="margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:10px">
-          <div style="font-size:12px;font-weight:500;letter-spacing:0.24em;color:#B8B9BE">DÉFILEZ</div>
+          <div style="font-size:12px;font-weight:500;letter-spacing:0.24em;color:#B8B9BE">{{ t.scroll }}</div>
           <div style="width:1px;height:44px;background:#3E6E91"></div>
         </div>
       </div>
@@ -132,14 +137,14 @@ a:hover{color:#17181C}
   <section class="pv-sec" data-screen-label="Le problème" style="padding:110px 48px;max-width:1100px;margin:0 auto">
     <div class="pv-prob-grid" style="display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:64px;align-items:start">
       <div data-reveal>
-        <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">01 — LE PROBLÈME</div>
-        <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Vendre gruge le temps de bâtir</h2>
+        <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">{{ t.pbEyebrow }}</div>
+        <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">{{ t.pbTitle }}</h2>
       </div>
       <div style="display:grid;gap:28px;font-size:17px;line-height:1.7;color:#55565C">
-        <p data-reveal style="margin:0">Chaque lead demande des heures : rappeler, qualifier, se déplacer, mesurer, monter la soumission. Et tout ça, souvent pour des clients non sérieux.</p>
-        <p data-reveal style="margin:0">Pendant ce temps, vos chantiers et votre gestion ne se font pas tout seuls.</p>
-        <p data-reveal style="margin:0">Embaucher un vendeur? Comptez le salaire, la formation, le roulement — et aucune garantie de résultat. La plupart des entrepreneurs finissent par faire les deux jobs à moitié.</p>
-        <p data-reveal style="margin:0;color:#17181C;font-weight:600">Il existe une troisième option : une force de vente complète, déjà formée, payée pour performer.</p>
+        <p data-reveal style="margin:0">{{ t.pb1 }}</p>
+        <p data-reveal style="margin:0">{{ t.pb2 }}</p>
+        <p data-reveal style="margin:0">{{ t.pb3 }}</p>
+        <p data-reveal style="margin:0;color:#17181C;font-weight:600">{{ t.pb4 }}</p>
       </div>
     </div>
   </section>
@@ -148,10 +153,10 @@ a:hover{color:#17181C}
     <div style="max-width:1100px;margin:0 auto">
       <div style="display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:64px">
         <div data-reveal>
-          <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">02 — LA MÉTHODE</div>
-          <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Du premier appel à la signature</h2>
+          <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">{{ t.meEyebrow }}</div>
+          <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">{{ t.meTitle }}</h2>
         </div>
-        <div data-reveal style="font-size:15px;color:#B8B9BE;max-width:320px;line-height:1.6">Chaque lead pivote entre nos mains — vous recevez un dossier prêt à soumissionner, ou un contrat signé.</div>
+        <div data-reveal style="font-size:15px;color:#B8B9BE;max-width:320px;line-height:1.6">{{ t.meDesc }}</div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px">
         <sc-for list="{{ etapes }}" as="e" hint-placeholder-count="4">
@@ -176,23 +181,45 @@ a:hover{color:#17181C}
     </div>
   </section>
 
-  <section class="pv-sec" id="forfaits" data-screen-label="Forfaits" style="padding:110px 48px;max-width:1100px;margin:0 auto">
+  <section class="pv-sec" id="forfaits" data-screen-label="Pour qui" style="padding:110px 48px;max-width:1100px;margin:0 auto">
     <div data-reveal style="text-align:center;margin-bottom:24px">
-      <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">03 — LES SERVICES</div>
-      <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">Un accompagnement à votre mesure</h2>
+      <div data-spine-marker style="font-size:13px;font-weight:600;letter-spacing:0.2em;color:#3E6E91;margin-bottom:12px">{{ t.foEyebrow }}</div>
+      <h2 style="margin:0;font-weight:900;font-size:clamp(28px,3.4vw,44px);line-height:1.05;text-transform:uppercase">{{ t.foTitle }}</h2>
     </div>
-    <p data-reveal style="text-align:center;font-size:17px;line-height:1.65;color:#55565C;max-width:620px;margin:0 auto 64px">Trois niveaux d'accompagnement, chacun personnalisable à vos besoins, votre territoire et votre volume de leads.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
-      <sc-for list="{{ forfaits }}" as="f" hint-placeholder-count="3">
-        <div data-reveal style="background:{{ f.bg }};color:{{ f.fg }};border:1px solid {{ f.border }};padding:40px 32px;display:flex;flex-direction:column;gap:24px;transition:transform 0.35s ease,box-shadow 0.35s ease" style-hover="transform:translateY(-6px);box-shadow:0 18px 40px rgba(23,24,28,0.14)">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div style="font-size:13px;font-weight:600;letter-spacing:0.2em">{{ f.nom }}</div>
-            <sc-if value="{{ f.badge }}" hint-placeholder-val="{{ false }}"><div style="font-size:11px;font-weight:600;letter-spacing:0.14em;background:#3E6E91;color:#F5F4F0;padding:5px 10px">{{ f.badge }}</div></sc-if>
-          </div>
-<div style="font-size:17px;line-height:1.6;color:{{ f.fg }};font-weight:600;min-height:76px">{{ f.pitch }}</div>
-          <div style="height:1px;background:{{ f.border }}"></div>
+    <p data-reveal style="text-align:center;font-size:17px;line-height:1.65;color:#55565C;max-width:660px;margin:0 auto 64px">{{ t.foIntro }}</p>
+    <div data-reveal data-spine-marker style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.2em;color:#55565C">{{ t.grp1 }}</div>
+      <div style="flex:1;height:1px;background:#B8B9BE"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch;margin-bottom:56px">
+      <sc-for list="{{ t.metiers }}" as="f" hint-placeholder-count="2">
+        <div data-reveal style="background:#FFFFFF;color:#17181C;border:1px solid #B8B9BE;padding:40px 32px;display:flex;flex-direction:column;gap:24px;transition:transform 0.35s ease,box-shadow 0.35s ease" style-hover="transform:translateY(-6px);box-shadow:0 18px 40px rgba(23,24,28,0.14)">
+          <div style="font-size:13px;font-weight:600;letter-spacing:0.2em">{{ f.nom }}</div>
+          <div style="font-size:17px;line-height:1.6;font-weight:600">{{ f.pitch }}</div>
+          <div style="height:1px;background:#B8B9BE"></div>
           <div style="display:grid;gap:12px;flex:1">
-            <sc-for list="{{ f.items }}" as="it" hint-placeholder-count="4">
+            <sc-for list="{{ f.items }}" as="it" hint-placeholder-count="3">
+              <div style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;line-height:1.5">
+                <span style="width:8px;height:8px;background:#3E6E91;flex-shrink:0;display:inline-block;transform:translateY(-1px)"></span>
+                <span>{{ it }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div data-reveal data-spine-marker style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.2em;color:#55565C">{{ t.grp2 }}</div>
+      <div style="flex:1;height:1px;background:#B8B9BE"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch">
+      <sc-for list="{{ t.projets }}" as="f" hint-placeholder-count="3">
+        <div data-reveal style="background:#FFFFFF;color:#17181C;border:1px solid #B8B9BE;padding:40px 32px;display:flex;flex-direction:column;gap:24px;transition:transform 0.35s ease,box-shadow 0.35s ease" style-hover="transform:translateY(-6px);box-shadow:0 18px 40px rgba(23,24,28,0.14)">
+          <div style="font-size:13px;font-weight:600;letter-spacing:0.2em">{{ f.nom }}</div>
+          <div style="font-size:17px;line-height:1.6;font-weight:600">{{ f.pitch }}</div>
+          <div style="height:1px;background:#B8B9BE"></div>
+          <div style="display:grid;gap:12px;flex:1">
+            <sc-for list="{{ f.items }}" as="it" hint-placeholder-count="3">
               <div style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;line-height:1.5">
                 <span style="width:8px;height:8px;background:#3E6E91;flex-shrink:0;display:inline-block;transform:translateY(-1px)"></span>
                 <span>{{ it }}</span>
@@ -203,8 +230,8 @@ a:hover{color:#17181C}
       </sc-for>
     </div>
     <div data-reveal style="display:flex;flex-direction:column;align-items:center;gap:24px;margin-top:56px">
-      <p style="margin:0;text-align:center;font-size:15px;color:#55565C">À partir de 2 500 $/mois, selon vos besoins. Préavis de 31 jours, sans engagement à long terme.</p>
-      <a href="#contact" style="display:inline-block;background:#17181C;color:#F5F4F0;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="background:#3E6E91;color:#F5F4F0">DISCUTONS DE VOS BESOINS</a>
+      <p style="margin:0;text-align:center;font-size:15px;color:#55565C">{{ t.price }}</p>
+      <a data-spine-marker href="#contact" style="display:inline-block;background:#17181C;color:#F5F4F0;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="background:#3E6E91;color:#F5F4F0">{{ t.discuss }}</a>
     </div>
   </section>
 
@@ -213,11 +240,11 @@ a:hover{color:#17181C}
     <div style="position:relative;max-width:760px;margin:0 auto;text-align:center;display:grid;gap:32px;justify-items:center">
       <div data-reveal data-spine-marker style="display:flex;align-items:center;gap:16px">
         <div class="pv-line" style="width:48px;height:1px;background:#55565C"></div>
-        <div class="pv-eyebrow" style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">15 MINUTES. AUCUN ENGAGEMENT.</div>
+        <div class="pv-eyebrow" style="font-size:13px;font-weight:500;letter-spacing:0.22em;color:#B8B9BE">{{ t.coEyebrow }}</div>
         <div class="pv-line" style="width:48px;height:1px;background:#55565C"></div>
       </div>
-      <h2 data-reveal style="margin:0;font-weight:900;font-size:clamp(36px,5vw,64px);line-height:1;text-transform:uppercase">Votre carnet de commandes mérite mieux<span style="color:#3E6E91">.</span></h2>
-      <p data-reveal style="margin:0;font-size:17px;line-height:1.65;color:#B8B9BE;max-width:520px">Une rencontre de 15 minutes suffit pour voir si Groupe Pivot peut vous être utile. On compare, ça ne vous engage à rien.</p>
+      <h2 data-reveal style="margin:0;font-weight:900;font-size:clamp(36px,5vw,64px);line-height:1;text-transform:uppercase">{{ t.coTitle }}<span style="color:#3E6E91">.</span></h2>
+      <p data-reveal style="margin:0;font-size:17px;line-height:1.65;color:#B8B9BE;max-width:520px">{{ t.coText }}</p>
       <div class="pv-ctas" data-reveal style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
         <a class="pv-cta" href="{{ telHref }}" style="display:inline-block;background:#F5F4F0;color:#17181C;font-weight:600;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="background:#3E6E91;color:#F5F4F0">{{ telephone }}</a>
         <a class="pv-cta" href="{{ mailHref }}" style="display:inline-block;border:1px solid #55565C;color:#F5F4F0;font-weight:500;font-size:14px;letter-spacing:0.1em;padding:18px 36px" style-hover="border:1px solid #F5F4F0;color:#F5F4F0">{{ courriel }}</a>
@@ -225,34 +252,34 @@ a:hover{color:#17181C}
       <div data-reveal style="width:100%;max-width:520px;display:grid;gap:28px;justify-items:center">
         <div style="display:flex;align-items:center;gap:16px;width:100%">
           <div style="flex:1;height:1px;background:#55565C"></div>
-          <div style="font-size:12px;font-weight:500;letter-spacing:0.2em;color:#B8B9BE">OU LAISSEZ-NOUS VOS COORDONNÉES</div>
+          <div style="font-size:12px;font-weight:500;letter-spacing:0.2em;color:#B8B9BE">{{ t.or }}</div>
           <div style="flex:1;height:1px;background:#55565C"></div>
         </div>
         <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
           <form onSubmit="{{ onSubmit }}" novalidate style="width:100%;display:grid;gap:16px;text-align:left">
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
             <div style="display:grid;gap:8px;align-content:start;min-width:0">
-              <label for="pv-nom" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">NOM <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">(optionnel)</span></label>
-              <input id="pv-nom" class="pv-in" type="text" name="nom" autocomplete="name" placeholder="Votre nom" value="{{ nom }}" onChange="{{ onNom }}">
+              <label for="pv-nom" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">{{ t.lNom }} <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">{{ t.opt }}</span></label>
+              <input id="pv-nom" class="pv-in" type="text" name="nom" autocomplete="name" placeholder="{{ t.phNom }}" value="{{ nom }}" onChange="{{ onNom }}">
             </div>
             <div style="display:grid;gap:8px;align-content:start;min-width:0">
-              <label for="pv-ent" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">ENTREPRISE <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">(optionnel)</span></label>
-              <input id="pv-ent" class="pv-in" type="text" name="entreprise" autocomplete="organization" placeholder="Nom de l’entreprise" value="{{ company }}" onChange="{{ onCompany }}">
+              <label for="pv-ent" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">{{ t.lEnt }} <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">{{ t.opt }}</span></label>
+              <input id="pv-ent" class="pv-in" type="text" name="entreprise" autocomplete="organization" placeholder="{{ t.phEnt }}" value="{{ company }}" onChange="{{ onCompany }}">
             </div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px">
               <div style="display:grid;gap:8px;align-content:start;min-width:0">
-                <label for="pv-tel" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">TÉLÉPHONE</label>
+                <label for="pv-tel" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">{{ t.lTel }}</label>
                 <input id="pv-tel" class="pv-in" type="tel" name="telephone" autocomplete="tel" placeholder="450 555 0123" value="{{ tel }}" aria-invalid="{{ badTel }}" onChange="{{ onTel }}">
               </div>
               <div style="display:grid;gap:8px;align-content:start;min-width:0">
-                <label for="pv-mail" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">COURRIEL</label>
-                <input id="pv-mail" class="pv-in" type="email" name="courriel" autocomplete="email" placeholder="vous@entreprise.ca" value="{{ mail }}" aria-invalid="{{ badMail }}" onChange="{{ onMail }}">
+                <label for="pv-mail" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">{{ t.lMail }}</label>
+                <input id="pv-mail" class="pv-in" type="email" name="courriel" autocomplete="email" placeholder="{{ t.phMail }}" value="{{ mail }}" aria-invalid="{{ badMail }}" onChange="{{ onMail }}">
               </div>
             </div>
             <div style="display:grid;gap:8px">
-              <label for="pv-msg" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">MESSAGE <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">(optionnel)</span></label>
-              <textarea id="pv-msg" class="pv-in" name="message" rows="3" placeholder="Un mot sur votre entreprise ou votre besoin" style="resize:vertical;min-height:84px;line-height:1.5" value="{{ msg }}" onChange="{{ onMsg }}"></textarea>
+              <label for="pv-msg" style="font-size:12px;font-weight:500;letter-spacing:0.16em;color:#B8B9BE">{{ t.lMsg }} <span style="font-size:11px;font-weight:400;letter-spacing:0.04em;color:#8F9096;text-transform:lowercase">{{ t.opt }}</span></label>
+              <textarea id="pv-msg" class="pv-in" name="message" rows="3" placeholder="{{ t.phMsg }}" style="resize:vertical;min-height:84px;line-height:1.5" value="{{ msg }}" onChange="{{ onMsg }}"></textarea>
             </div>
             <sc-if value="{{ err }}" hint-placeholder-val="{{ false }}">
               <div role="alert" style="font-size:14px;font-weight:600;line-height:1.5;color:#F0A56B">{{ err }}</div>
@@ -262,8 +289,8 @@ a:hover{color:#17181C}
         </sc-if>
         <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
           <div role="status" style="width:100%;box-sizing:border-box;border:1px solid #3E6E91;padding:28px 24px;display:grid;gap:8px;text-align:left">
-            <div style="font-weight:900;font-size:20px;text-transform:uppercase">Merci<span style="color:#3E6E91">.</span></div>
-            <div style="font-size:15px;line-height:1.6;color:#B8B9BE">Vos informations ont bien été reçues, nous vous contactons dès que possible.</div>
+            <div style="font-weight:900;font-size:20px;text-transform:uppercase">{{ t.thanks }}<span style="color:#3E6E91">.</span></div>
+            <div style="font-size:15px;line-height:1.6;color:#B8B9BE">{{ t.thanksText }}</div>
           </div>
         </sc-if>
       </div>
@@ -272,7 +299,7 @@ a:hover{color:#17181C}
 
   <footer class="pv-foot" style="background:#17181C;color:#55565C;border-top:1px solid #2A2B31;padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
     <div style="font-weight:900;font-size:15px;color:#B8B9BE">G<span style="color:#3E6E91">P</span>.</div>
-    <div style="font-size:12px;letter-spacing:0.14em">GROUPE PIVOT — FORCE DE VENTE SUR MESURE</div>
+    <div style="font-size:12px;letter-spacing:0.14em">{{ t.footer }}</div>
     <div style="font-size:12px;letter-spacing:0.1em">© 2026 GROUPE PIVOT</div>
   </footer>
   </div>
@@ -280,11 +307,12 @@ a:hover{color:#17181C}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;telephone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;450 300 9820&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;},&quot;courriel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;info@groupepivot.ca&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Coordonnées&quot;}}">
 class Component extends DCLogic {
-  state = { stage: 0, mobile: false, nom: '', company: '', tel: '', mail: '', msg: '', err: '', badTel: false, badMail: false, sent: false, sending: false };
+  state = { stage: 0, mobile: false, nom: '', company: '', tel: '', mail: '', msg: '', err: '', badTel: false, badMail: false, sent: false, sending: false, lang: 'fr' };
 
   submitForm(e) {
     if (e && e.preventDefault) e.preventDefault();
     if (this.state.sending) return;
+    const T = this.dict()[this.state.lang];
     // Coller ici l'adresse du webhook GoHighLevel (déclencheur « Inbound Webhook »).
     const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/hr1JlDQc80VnWBcQ7mOK/webhook-trigger/bce08a28-99d2-4cd0-9c2a-d6f1612b3573';
     const nom = this.state.nom.trim(), tel = this.state.tel.trim(), mail = this.state.mail.trim();
@@ -293,18 +321,18 @@ class Component extends DCLogic {
     const mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail);
     let err = '', badTel = false, badMail = false;
     if (!tel && !mail) {
-      err = 'Indiquez un numéro de téléphone ou un courriel.'; badTel = true; badMail = true;
+      err = T.errEmpty; badTel = true; badMail = true;
     } else {
-      if (tel && !telOk) { badTel = true; err = 'Vérifiez le numéro de téléphone (10 chiffres).'; }
-      if (mail && !mailOk) { badMail = true; err = err ? 'Vérifiez le téléphone et le courriel.' : 'Vérifiez l’adresse courriel.'; }
+      if (tel && !telOk) { badTel = true; err = T.errTel; }
+      if (mail && !mailOk) { badMail = true; err = err ? T.errBoth : T.errMail; }
     }
     if (err) { this.setState({ err, badTel, badMail }); return; }
     if (!WEBHOOK) { this.setState({ sent: true, err: '', badTel: false, badMail: false }); return; }
-    const body = new URLSearchParams({ name: nom, phone: tel, email: mail, company_name: this.state.company.trim(), message: this.state.msg.trim(), source: 'Site Groupe Pivot' });
+    const body = new URLSearchParams({ name: nom, phone: tel, email: mail, company_name: this.state.company.trim(), message: this.state.msg.trim(), source: 'Site Groupe Pivot', language: this.state.lang });
     this.setState({ sending: true, err: '', badTel: false, badMail: false });
     fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', body })
       .then(() => this.setState({ sent: true, sending: false }))
-      .catch(() => this.setState({ sending: false, err: 'L’envoi n’a pas fonctionné. Réessayez ou appelez-nous.' }));
+      .catch(() => this.setState({ sending: false, err: T.errSend }));
   }
   outerRef = React.createRef();
   sceneRef = React.createRef();
@@ -378,6 +406,150 @@ class Component extends DCLogic {
     };
   }
 
+  dict() {
+    return {
+      fr: {
+        title: 'Groupe Pivot — Force de vente sur mesure',
+        navMethode: 'MÉTHODE', navFor: 'POUR QUI', navCta: 'PARLONS-EN',
+        langBtn: 'EN', langAria: 'Switch to English', logoAria: 'Groupe Pivot, retour à l’accueil',
+        eyebrow: 'FORCE DE VENTE SUR MESURE', h1a: 'Vous bâtissez.', h1b: 'On s’occupe du reste', scroll: 'DÉFILEZ',
+        labClient: 'VOTRE ENTREPRISE', labEnd: 'RÉSULTATS LIVRÉS',
+        pbEyebrow: '01 — LE PROBLÈME', pbTitle: 'Vendre gruge le temps de bâtir',
+        pb1: 'Chaque lead demande des heures : rappeler, qualifier, se déplacer, mesurer, monter la soumission. Et tout ça, souvent pour des clients non sérieux.',
+        pb2: 'Pendant ce temps, vos chantiers et votre gestion ne se font pas tout seuls.',
+        pb3: 'Embaucher un vendeur? Comptez le salaire, la formation, le roulement — et aucune garantie de résultat. La plupart des entrepreneurs finissent par faire les deux jobs à moitié.',
+        pb4: 'Il existe une troisième option : une force de vente complète, déjà formée, payée pour performer.',
+        meEyebrow: '02 — LA MÉTHODE', meTitle: 'Du premier appel à la signature',
+        meDesc: 'Chaque lead pivote entre nos mains — vous recevez un dossier prêt à soumissionner, ou un contrat signé.',
+        foEyebrow: '03 — POUR QUI', foTitle: 'Pour quel type d’entreprises?',
+        foIntro: 'Que vous soyez entrepreneur général ou spécialisé, en rénovation, en construction neuve ou en développement, Groupe Pivot s’adapte à votre réalité.',
+        grp1: 'VOTRE MÉTIER', grp2: 'VOS PROJETS',
+        price: 'À partir de 2 500 $/mois, selon vos besoins. Préavis de 31 jours, sans engagement à long terme.',
+        discuss: 'DISCUTONS DES POSSIBILITÉS',
+        coEyebrow: '15 MINUTES. AUCUN ENGAGEMENT.', coTitle: 'Votre carnet de commandes mérite mieux',
+        coText: 'Une rencontre de 15 minutes suffit pour voir si Groupe Pivot peut vous être utile. On compare, ça ne vous engage à rien.',
+        or: 'OU LAISSEZ-NOUS VOS COORDONNÉES',
+        lNom: 'NOM', lEnt: 'ENTREPRISE', lTel: 'TÉLÉPHONE', lMail: 'COURRIEL', lMsg: 'MESSAGE', opt: '(optionnel)',
+        phNom: 'Votre nom', phEnt: 'Nom de l’entreprise', phMsg: 'Un mot sur votre entreprise ou votre besoin', phMail: 'vous@entreprise.ca',
+        send: 'ENVOYER', sending: 'ENVOI…', thanks: 'Merci',
+        thanksText: 'Vos informations ont bien été reçues, nous vous contactons dès que possible.',
+        errEmpty: 'Indiquez un numéro de téléphone ou un courriel.',
+        errTel: 'Vérifiez le numéro de téléphone (10 chiffres).',
+        errBoth: 'Vérifiez le téléphone et le courriel.',
+        errMail: 'Vérifiez l’adresse courriel.',
+        errSend: 'L’envoi n’a pas fonctionné. Réessayez ou appelez-nous.',
+        footer: 'GROUPE PIVOT — FORCE DE VENTE SUR MESURE',
+        caps: [
+          { num: '01', t: 'Le chaos', d: 'De nombreux leads désorganisés et non qualifiés.' },
+          { num: '02', t: 'La prise en charge', d: 'Groupe Pivot centralise et qualifie : le chaos disparaît.' },
+          { num: '03', t: 'Le terrain', d: 'Notre équipe mène chaque lead : visite, mesures, plan, rapport complet.' },
+          { num: '04', t: 'Les résultats', d: 'On pousse l’analyse. Rien n’est laissé au hasard. Chaque lead devient une opportunité.' },
+          { num: '05', t: 'La boucle', d: 'Pour vous? Moins de travail, plus de résultats.' },
+        ],
+        etapes: [
+          { num: 'ÉTAPE 01', rot: 0, titre: 'Qualification', texte: 'Chaque lead entrant est contacté en moins de 15 minutes, trié et qualifié selon vos critères. Vous ne perdez plus de temps sur les mauvais projets.' },
+          { num: 'ÉTAPE 02', rot: 90, titre: 'Visite terrain', texte: 'On se déplace chez votre client : mesures, photos, relevé complet des besoins. Vous restez sur vos chantiers.' },
+          { num: 'ÉTAPE 03', rot: 180, titre: 'Plan et rapport', texte: 'Plan 2D et rapport détaillé, livrés prêts pour votre soumission. Tout ce qu’il faut pour chiffrer juste, sans y avoir mis un pied.' },
+          { num: 'ÉTAPE 04', rot: 270, titre: 'Signature', texte: 'Avec le service Signature, on présente la soumission et on ferme le deal pour vous — négociation et signature incluses.' },
+        ],
+        chiffres: [
+          { valeur: '< 15 min', label: 'DÉLAI DE CONTACT DES LEADS' },
+          { valeur: '0 embauche', label: 'NI SALAIRE, NI FORMATION, NI ROULEMENT' },
+          { valeur: 'A à Z', label: 'DU PREMIER APPEL À LA SIGNATURE' },
+        ],
+        metiers: [
+          { nom: 'ENTREPRENEURS GÉNÉRAUX', pitch: 'Vous coordonnez le chantier du début à la fin. On s’occupe de remplir et de qualifier votre carnet de commandes.',
+            items: ['Plus de leads sérieux, moins de temps perdu au téléphone', 'Dossiers complets : mesures, plans et rapport', 'Soumissions plus rapides, sans visite préalable'] },
+          { nom: 'ENTREPRENEURS SPÉCIALISÉS', pitch: 'Toiture, électricité, plomberie, revêtement, finition : votre expertise vaut mieux que la prospection.',
+            items: ['Vos équipes restent sur les chantiers', 'Mesures et photos prises sur place, pour chiffrer juste', 'Seuls les clients qualifiés vous sont transmis'] },
+        ],
+        projets: [
+          { nom: 'RÉNOVATION', pitch: 'De la salle de bain à la rénovation majeure, chaque projet est mesuré et documenté avant votre soumission.',
+            items: ['Cuisines, salles de bain, sous-sols', 'Agrandissements et rénovations majeures', 'Relevé détaillé de l’existant'] },
+          { nom: 'CONSTRUCTION NEUVE', pitch: 'Du terrain à la clé en main, vous recevez un dossier clair pour chiffrer avec confiance.',
+            items: ['Maisons unifamiliales et jumelés', 'Projets clé en main', 'Qualification du budget et de l’échéancier'] },
+          { nom: 'DÉVELOPPEMENT ET MULTILOGEMENT', pitch: 'Plex, copropriétés, projets locatifs : un volume de leads plus élevé demande une équipe de vente à la hauteur.',
+            items: ['Flux de leads géré en continu', 'Triage rigoureux selon vos critères', 'Présentation et closing pour les projets d’envergure'] },
+        ],
+      },
+      en: {
+        title: 'Groupe Pivot — Custom-built sales force',
+        navMethode: 'METHOD', navFor: 'WHO IT’S FOR', navCta: 'LET’S TALK',
+        langBtn: 'FR', langAria: 'Passer au français', logoAria: 'Groupe Pivot, back to top',
+        eyebrow: 'CUSTOM-BUILT SALES FORCE', h1a: 'You build.', h1b: 'We handle the rest', scroll: 'SCROLL',
+        labClient: 'YOUR COMPANY', labEnd: 'RESULTS DELIVERED',
+        pbEyebrow: '01 — THE PROBLEM', pbTitle: 'Selling eats the time you need to build',
+        pb1: 'Every lead takes hours: calling back, qualifying, driving out, measuring, putting the quote together. And often for clients who were never serious.',
+        pb2: 'Meanwhile, your job sites and your management don’t run themselves.',
+        pb3: 'Hire a salesperson? Count the salary, the training, the turnover — and no guarantee of results. Most contractors end up doing both jobs halfway.',
+        pb4: 'There’s a third option: a complete sales force, already trained, paid to perform.',
+        meEyebrow: '02 — THE METHOD', meTitle: 'From the first call to the signature',
+        meDesc: 'Every lead pivots through our hands — you receive a file ready to quote, or a signed contract.',
+        foEyebrow: '03 — WHO IT’S FOR', foTitle: 'Who is it for?',
+        foIntro: 'Whether you are a general or specialty contractor, in renovation, new construction or development, Groupe Pivot adapts to your reality.',
+        grp1: 'YOUR TRADE', grp2: 'YOUR PROJECTS',
+        price: 'Starting at $2,500/month, depending on your needs. 31 days’ notice, no long-term commitment.',
+        discuss: 'SEE IF WE’RE A FIT',
+        coEyebrow: '15 MINUTES. NO COMMITMENT.', coTitle: 'Your order book deserves better',
+        coText: 'A 15-minute meeting is enough to see whether Groupe Pivot can help. We compare notes, and it commits you to nothing.',
+        or: 'OR LEAVE YOUR DETAILS',
+        lNom: 'NAME', lEnt: 'COMPANY', lTel: 'PHONE', lMail: 'EMAIL', lMsg: 'MESSAGE', opt: '(optional)',
+        phNom: 'Your name', phEnt: 'Company name', phMsg: 'A word about your company or your needs', phMail: 'you@company.com',
+        send: 'SEND', sending: 'SENDING…', thanks: 'Thank you',
+        thanksText: 'Your information has been received. We will be in touch as soon as possible.',
+        errEmpty: 'Enter a phone number or an email address.',
+        errTel: 'Check the phone number (10 digits).',
+        errBoth: 'Check the phone number and the email address.',
+        errMail: 'Check the email address.',
+        errSend: 'Sending failed. Please try again or call us.',
+        footer: 'GROUPE PIVOT — CUSTOM-BUILT SALES FORCE',
+        caps: [
+          { num: '01', t: 'The chaos', d: 'Plenty of disorganized, unqualified leads.' },
+          { num: '02', t: 'Taking charge', d: 'Groupe Pivot centralizes and qualifies: the chaos disappears.' },
+          { num: '03', t: 'On site', d: 'Our team handles every lead: visit, measurements, plan, full report.' },
+          { num: '04', t: 'The results', d: 'We push the analysis. Nothing is left to chance. Every lead becomes an opportunity.' },
+          { num: '05', t: 'The loop', d: 'For you? Less work, more results.' },
+        ],
+        etapes: [
+          { num: 'STEP 01', rot: 0, titre: 'Qualification', texte: 'Every incoming lead is contacted within 15 minutes, sorted and qualified against your criteria. No more wasted time on the wrong projects.' },
+          { num: 'STEP 02', rot: 90, titre: 'Site visit', texte: 'We go to your client’s home: measurements, photos, a full needs assessment. You stay on your job sites.' },
+          { num: 'STEP 03', rot: 180, titre: 'Plan and report', texte: 'A 2D plan and detailed report, delivered ready for your quote. Everything you need to price accurately, without setting foot on site.' },
+          { num: 'STEP 04', rot: 270, titre: 'Signature', texte: 'With the Signature service, we present the quote and close the deal for you — negotiation and signing included.' },
+        ],
+        chiffres: [
+          { valeur: '< 15 min', label: 'LEAD RESPONSE TIME' },
+          { valeur: '0 hires', label: 'NO SALARY, NO TRAINING, NO TURNOVER' },
+          { valeur: 'A to Z', label: 'FROM THE FIRST CALL TO THE SIGNATURE' },
+        ],
+        metiers: [
+          { nom: 'GENERAL CONTRACTORS', pitch: 'You coordinate the job from start to finish. We fill and qualify your order book.',
+            items: ['More serious leads, less time lost on the phone', 'Complete files: measurements, plans and report', 'Faster quotes, without a prior site visit'] },
+          { nom: 'SPECIALTY CONTRACTORS', pitch: 'Roofing, electrical, plumbing, siding, finishing: your expertise is worth more than prospecting.',
+            items: ['Your crews stay on the job sites', 'Measurements and photos taken on site, so you can price accurately', 'Only qualified clients are passed on to you'] },
+        ],
+        projets: [
+          { nom: 'RENOVATION', pitch: 'From a bathroom to a major renovation, every project is measured and documented before your quote.',
+            items: ['Kitchens, bathrooms, basements', 'Additions and major renovations', 'Detailed survey of the existing building'] },
+          { nom: 'NEW CONSTRUCTION', pitch: 'From the lot to turnkey, you get a clear file to price with confidence.',
+            items: ['Single-family and semi-detached homes', 'Turnkey projects', 'Budget and timeline qualification'] },
+          { nom: 'DEVELOPMENT AND MULTI-UNIT', pitch: 'Plexes, condos, rental projects: a higher lead volume calls for a sales team that can keep up.',
+            items: ['Lead flow managed continuously', 'Rigorous screening against your criteria', 'Presentation and closing for large-scale projects'] },
+        ],
+      },
+    };
+  }
+
+  applyLang(lang) {
+    document.documentElement.lang = lang;
+    document.title = this.dict()[lang].title;
+  }
+  toggleLang() {
+    const lang = this.state.lang === 'fr' ? 'en' : 'fr';
+    try { localStorage.setItem('pv-lang', lang); } catch (e) {}
+    this.applyLang(lang);
+    this.setState({ lang }, () => { this.applyLang(lang); if (this._onScroll) this._onScroll(); });
+  }
+
   compactV(v) {
     const k = 0.58, off = 30;
     const re = /(-?[\d.]+),(-?[\d.]+)/g;
@@ -397,6 +569,12 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    let saved = null;
+    try { saved = localStorage.getItem('pv-lang'); } catch (e) {}
+    const nl = (navigator.language || '').toLowerCase();
+    const lang0 = saved === 'en' || saved === 'fr' ? saved : (nl.indexOf('en') === 0 ? 'en' : 'fr');
+    this.applyLang(lang0);
+    if (lang0 !== this.state.lang) this.setState({ lang: lang0 });
     this._mq = window.matchMedia('(max-width: 700px)');
     const syncMq = () => this.setState({ mobile: this._mq.matches });
     this._mq.addEventListener('change', syncMq);
@@ -470,6 +648,7 @@ class Component extends DCLogic {
     el.style.opacity = t > 0 ? '' : '0';
   }
   ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+  easeS(t) { return 0.5 - 0.5 * Math.cos(Math.PI * t); }
 
   update() {
     const outer = this.outerRef.current;
@@ -580,9 +759,15 @@ class Component extends DCLogic {
           const m = ys[i];
           if (raw < m) break;
           const next = ys[i + 1];
-          if (next === undefined || raw < m + dwell) { tlen = Ls[i]; }
-          else { const t = Math.min(1, (raw - m - dwell) / Math.max(1, next - m - dwell)); tlen = Ls[i] + this.ease(t) * (Ls[i + 1] - Ls[i]); }
+          const dw = next === undefined ? dwell : Math.min(dwell, (next - m) * 0.35);
+          if (next === undefined || raw < m + dw) { tlen = Ls[i]; }
+          else { const t = Math.min(1, (raw - m - dw) / Math.max(1, next - m - dw)); tlen = Ls[i] + this.easeS(t) * (Ls[i + 1] - Ls[i]); }
         }
+        if (this._spineCur === undefined) this._spineCur = tlen;
+        const gapL = tlen - this._spineCur;
+        this._spineCur = Math.abs(gapL) < 0.5 ? tlen : this._spineCur + gapL * 0.12;
+        if (Math.abs(tlen - this._spineCur) >= 0.5 && this._onScroll) this._onScroll();
+        tlen = this._spineCur;
         const total = Ls[Ls.length - 1];
         spath.style.strokeDasharray = total;
         spath.style.strokeDashoffset = total - tlen;
@@ -602,13 +787,7 @@ class Component extends DCLogic {
     const sc = this.state.mobile ? this.compactV(raw) : raw;
     const tel = this.props.telephone ?? '514 000 0000';
     const mail = this.props.courriel ?? 'info@groupepivot.ca';
-    const caps = [
-      { num: '01', t: 'Le chaos', d: 'De nombreux leads désorganisés et non qualifiés.' },
-      { num: '02', t: 'La prise en charge', d: 'Groupe Pivot centralise et qualifie : le chaos disparaît.' },
-      { num: '03', t: 'Le terrain', d: 'Notre équipe mène chaque lead : visite, mesures, plan, rapport complet.' },
-      { num: '04', t: 'Les résultats', d: 'On pousse l\u2019analyse. Rien n\u2019est laissé au hasard. Chaque lead devient une opportunité.' },
-      { num: '05', t: 'La boucle', d: 'Pour vous? Moins de travail, plus de résultats.' },
-    ];
+    const t = this.dict()[this.state.lang];
     return {
       outerRef: this.outerRef, sceneRef: this.sceneRef, headRef: this.headRef, capRef: this.capRef, stickRef: this.stickRef,
       spineWrapRef: this.spineWrapRef, spineSvgRef: this.spineSvgRef, spinePathRef: this.spinePathRef, spineDotRef: this.spineDotRef,
@@ -625,41 +804,21 @@ class Component extends DCLogic {
         door: `M ${cx + 6},${cy + 24} L ${cx + 6},${cy + 13} L ${cx + 13},${cy + 13} L ${cx + 13},${cy + 24}`,
       }))(sc.client),
       gp: { ...sc.gp, gx: sc.gp.x - 32, px: sc.gp.x - 4, dx: sc.gp.x + 27, dy: sc.gp.ty - 6 },
-      captions: caps.map((c, i) => ({ ...c, op: i === this.state.stage ? 1 : 0, dy: i === this.state.stage ? 0 : 14 })),
+      captions: t.caps.map((c, i) => ({ ...c, op: i === this.state.stage ? 1 : 0, dy: i === this.state.stage ? 0 : 14 })),
       nom: this.state.nom, tel: this.state.tel, mail: this.state.mail, msg: this.state.msg,
       onMsg: (e) => this.setState({ msg: e.target.value }),
       company: this.state.company,
       onCompany: (e) => this.setState({ company: e.target.value }),
       err: this.state.err, badTel: this.state.badTel, badMail: this.state.badMail,
-      sent: this.state.sent, notSent: !this.state.sent, sendLabel: this.state.sending ? 'ENVOI…' : 'ENVOYER',
+      sent: this.state.sent, notSent: !this.state.sent, sendLabel: this.state.sending ? t.sending : t.send,
       onNom: (e) => this.setState({ nom: e.target.value }),
       onTel: (e) => this.setState({ tel: e.target.value, err: '', badTel: false, badMail: false }),
       onMail: (e) => this.setState({ mail: e.target.value, err: '', badTel: false, badMail: false }),
       onSubmit: (e) => this.submitForm(e),
       telephone: tel, telHref: 'tel:' + tel.replace(/\s/g, ''),
       courriel: mail, mailHref: 'mailto:' + mail,
-      etapes: [
-        { num: 'ÉTAPE 01', rot: 0, titre: 'Qualification', texte: 'Chaque lead entrant est contacté en moins de 15 minutes, trié et qualifié selon vos critères. Vous ne perdez plus de temps sur les mauvais projets.' },
-        { num: 'ÉTAPE 02', rot: 90, titre: 'Visite terrain', texte: 'On se déplace chez votre client : mesures, photos, relevé complet des besoins. Vous restez sur vos chantiers.' },
-        { num: 'ÉTAPE 03', rot: 180, titre: 'Plan et rapport', texte: 'Plan 2D et rapport détaillé, livrés prêts pour votre soumission. Tout ce qu\u2019il faut pour chiffrer juste, sans y avoir mis un pied.' },
-        { num: 'ÉTAPE 04', rot: 270, titre: 'Signature', texte: 'Avec le service Signature, on présente la soumission et on ferme le deal pour vous — négociation et signature incluses.' },
-      ],
-      chiffres: [
-        { valeur: '< 15 min', label: 'DÉLAI DE CONTACT DES LEADS' },
-        { valeur: '0 embauche', label: 'NI SALAIRE, NI FORMATION, NI ROULEMENT' },
-        { valeur: 'A à Z', label: 'DU PREMIER APPEL À LA SIGNATURE' },
-      ],
-      forfaits: [
-        { nom: 'ESSENTIEL', badge: '', pitch: 'Vous choisissez les leads à faire estimer. On livre le dossier complet, prêt à soumissionner.',
-          items: ['Prise de rendez-vous avec votre client', 'Visite terrain : mesures, photos, relevés', 'Plan 2D du projet', 'Rapport complet, prêt pour soumission'],
-          bg: '#FFFFFF', fg: '#17181C', border: '#B8B9BE', muted: '#55565C' },
-        { nom: 'CROISSANCE', badge: '', pitch: 'On prend en charge tout votre flux de leads entrants, du premier contact au rapport.',
-          items: ['Tout le service Essentiel', 'Contact de chaque lead en moins de 15 minutes', 'Triage et qualification selon vos critères', 'Seuls les leads sérieux passent en visite'],
-          bg: '#FFFFFF', fg: '#17181C', border: '#B8B9BE', muted: '#55565C' },
-        { nom: 'SIGNATURE', badge: 'RECOMMANDÉ', pitch: 'Votre force de vente complète : on présente, on négocie, on signe.',
-          items: ['Tout le service Croissance', 'Présentation de la soumission à votre client', 'Négociation et closing', 'Pensé pour les projets d\u2019envergure'],
-          bg: '#17181C', fg: '#F5F4F0', border: '#55565C', muted: '#B8B9BE' },
-      ],
+      t, toggleLang: () => this.toggleLang(),
+      etapes: t.etapes, chiffres: t.chiffres,
     };
   }
 }
